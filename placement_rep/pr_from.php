@@ -29,10 +29,10 @@ print_r($_POST);
             background-repeat: no-repeat;
           }
           .content-header{
-          	width:80%;
+          	width:50%;
           	position: absolute;
-          	left:10%;
-          	right: 10%;
+          	left:25%;
+          	right: 25%;
             padding: 20px;
           }
           .col-md-6{
@@ -41,6 +41,7 @@ print_r($_POST);
           }
           .all_from{
             display: flex;
+            flex-direction: column;
             justify-content: space-between;
             padding: 5px;
            background-color: var(--background); 
@@ -76,7 +77,7 @@ print_r($_POST);
             background-color: white;
           }
     /* ===== MEDIA QUERIES =====*/
-    @media screen and (max-width: 726px) {
+    @media screen and (max-width: 826px) {
           .all_from{
             display: flex;
             flex-direction: column;
@@ -139,91 +140,15 @@ print_r($_POST);
                 </div>
               	<div class="form-group">
                 <input class="form-control input-lg" type="text" id="email" name="email" placeholder="Email *" required>
-              	</div>
-              	<div class="form-group">
-                <h4>Gender :  </h4>
-                </div>
-              	<div class="form-group">
-                <select class="form-control input-lg" id="gender_set" name="gender"  required>
-                  <option value="M">Male *</option>
-                  <option value="F">Femal *</option>
-                  <option value="O">Other *</option>
-                </select>
-              	</div>
-              	<div class="form-group">
-                <h4>Programme : </h4>
-                </div>
-              	<div class="form-group">
-                <input class="form-control input-lg" type="text"  name="programme" placeholder="Enter Programme *" required>
-              	</div>
-              	<div class="form-group">
-                <h4>Department : </h4>
-                </div>
-              	<div class="form-group">
-                <input class="form-control input-lg" type="text" id="dept" name="dept" placeholder="department *" required>
-              	</div>
-              	<div class="form-group">
-                <h4>Cpi : </h4>
-                </div>
-              	<div class="form-group">
-                <input class="form-control input-lg" type="number" step="0.01" id="cpi" name="cpi" placeholder="Current cpi *" required>
-              	</div> 
-                <div class="form-group">
-                <h4>Upload Your Resume: </h4>
-                </div>  
-                <div class="form-group">
-                <label style="color: #10161A;">File Format PDF Only!</label>
-                <input type="file" name="resume" class="btn btn-raised btn-link" required>
-                </div>                  
-
+              	</div>            
             </div>            
-            <div class="col-md-6 latest-job ">
-              <div class="form-group">
-                <h4> Catagory: </h4>
-                </div>
-                <div class="form-group">
-                <input class="form-control input-lg" type="text" id="catagory" name="catagory" placeholder="catagory">
-                </div> 
+            <div class="col-md-6 latest-job "> 
                 <div class="form-group">
                 <h4>Contact No: </h4>
                 </div>  
               <div class="form-group">
                 <input class="form-control input-lg" type="text" id="contactno" name="contactno" minlength="10" maxlength="10" onkeypress="return validatePhone(event);" placeholder="Phone Number *">
               </div>
-              <div class="form-group">
-                <h4>Address: </h4>
-                </div>  
-              <div class="form-group">
-                <textarea class="form-control input-lg" rows="4" id="address" name="address" placeholder="Address *"></textarea>
-              </div>
-               
-              <div class="form-group">
-                <h4>PPO details: </h4>
-                </div>  
-                <div class="form-group">
-                <select class="form-control input-lg">
-                  <option>YES*</option>
-                  <option>NO*</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <h4>ppo_ctc: </h4>
-                </div>  
-              <div class="form-group">
-                 <input type="number" name="ppo_ctc"
-                 class="form-control input-lg" placeholder="Enter ppo_ctc *">
-              </div>
-              <div class="form-group">
-                <h4>Roll No: </h4>
-                </div>                
-              <div class="form-group">
-                <input class="form-control input-lg" type="text"  name="rollno" placeholder="Enter Roll No *">
-              </div>
-                <div class=" checkbox">
-                <input type="checkbox" style="justify-content: left;"> I accept terms & conditions
-              </div>
-              
-              
               <div class="form-group  col-md-12">
                 <button class="btn btn-flat btn-lg ">Register</button>
               </div>  
