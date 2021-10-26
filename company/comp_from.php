@@ -1,7 +1,9 @@
 <?php
-print_r($_POST);
+session_start();
+require_once '../connect.php';
 ?>
- <!DOCTYPE html>
+
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -101,13 +103,8 @@ print_r($_POST);
         right: 0%;
       }
     }
-
-
-
-
-
   </style>
-  <title>Setplacement registration_from</title>
+  <title>Setplacement comp_from</title>
   <!-- Tell the browser to be responsive to screen width -->
   
 </head>
@@ -120,7 +117,7 @@ print_r($_POST);
       <div class="container">
         <div class="row latest-job margin-top-50 margin-bottom-20 bg-white">
           <h2 class="text-center margin-bottom-20 margin-top-20 uper">Create Your Profile</h2>
-          <form method="post" id="registerCandidates" action="adduser.php" enctype="multipart/form-data">
+          <form method="post" id="registerCandidates" action="" enctype="multipart/form-data">
             <div class="all_from">
             <div class="col-md-6 latest-job ">
             	<div class="form-group">
@@ -162,8 +159,27 @@ print_r($_POST);
         </div>
       </div>
     </section>
-
- 
+<?php
+if( isset($_POST['comp_name']) && isset($_POST['email']) && isset($_POST['contactno']) && isset($_POST['comp_details']) ){
+  
+try{
+  $sql="INSERT INTO setplacement.company(cmp_name,details,contactNo,email) 
+ VALUES(:cmp_name,:details,:contactNo,:email)";
+  $stmt=$conn->prepare($sql);
+  $stmt->execute(array(
+      ':cmp_name'=> $_POST['comp_name'],
+      ':email' => $_POST['email'],
+      ':details'=> $_POST['comp_details'],
+      ':contactNo'=>$_POST['contactno']
+  ));
+  unset($_POST);
+  header('Location:../log_in.php');
+      }catch(Exception $err){
+        echo $err->getMessage();
+    } 
+}
+unset($_POST);
+?>
 	<!-- jQuery Plugins -->
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>

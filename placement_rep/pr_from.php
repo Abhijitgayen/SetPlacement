@@ -1,5 +1,6 @@
 <?php
-print_r($_POST);
+session_start();
+require_once '../connect.php';
 ?>
  <!DOCTYPE html>
 <html>
@@ -101,26 +102,19 @@ print_r($_POST);
         right: 0%;
       }
     }
-
-
-
-
-
   </style>
-  <title>Setplacement registration_from</title>
+  <title>Setplacement pr_from</title>
   <!-- Tell the browser to be responsive to screen width -->
   
 </head>
 <body>
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper" style="margin-left: 0px;">
-
     <section class="content-header">
       <div class="container">
         <div class="row latest-job margin-top-50 margin-bottom-20 bg-white">
           <h2 class="text-center margin-bottom-20 margin-top-20 uper">Create Your Profile</h2>
-          <form method="post" id="registerCandidates" action="adduser.php" enctype="multipart/form-data">
+          <form method="post" id="registerCandidates" action="" enctype="multipart/form-data">
             <div class="all_from">
             <div class="col-md-6 latest-job ">
             	<div class="form-group">
@@ -135,11 +129,17 @@ print_r($_POST);
               	<div class="form-group">
                 <input class="form-control input-lg" type="text" id="lname" name="lname" placeholder="Last Name *" required>
               	</div>
+                <div class="form-group">
+                <h4>Enter depertment: </h4>
+                </div>
+                <div class="form-group">
+                <input class="form-control input-lg" type="text" name="dept" placeholder="depertment*" required>
+                </div>  
               	<div class="form-group">
                 <h4>E-Mail Address: </h4>
                 </div>
               	<div class="form-group">
-                <input class="form-control input-lg" type="text" id="email" name="email" placeholder="Email *" required>
+                <input class="form-control input-lg" type="text" id="email" name="email" placeholder="<?php echo $_SESSION['email_id'];?>" value="<?php echo $_SESSION['email_id'];?>"required>
               	</div>            
             </div>            
             <div class="col-md-6 latest-job "> 
@@ -147,13 +147,11 @@ print_r($_POST);
                 <h4>Contact No: </h4>
                 </div>  
               <div class="form-group">
-                <input class="form-control input-lg" type="text" id="contactno" name="contactno" minlength="10" maxlength="10" onkeypress="return validatePhone(event);" placeholder="Phone Number *">
+                <input class="form-control input-lg" type="text" id="contactno" name="contactno" minlength="10" maxlength="10" placeholder="Phone Number *">
               </div>
               <div class="form-group  col-md-12">
-                <button class="btn btn-flat btn-lg ">Register</button>
-              </div>  
-            
-               
+                <button class="btn btn-flat btn-lg ">Submit</button>
+              </div>     
             </div>
           </div>
           </form>
@@ -161,6 +159,32 @@ print_r($_POST);
         </div>
       </div>
     </section>
+<?php
+if( isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['email']) && isset($_POST['contactno']) && isset($_POST['dept']) ){
+try{
+  $sql="INSERT INTO setplacement.placement_rep(name,depertment,email,mobileNo) 
+ VALUES(:name,:depertment,:email,:mobileNo)";
+  $stmt=$conn->prepare($sql);
+  $stmt->execute(array(
+      ':name'=> $_POST['fname'],
+      ':email' => $_POST['email'],
+      ':depertment'=> $_POST['dept'],
+      ':mobileNo'=>$_POST['contactno']
+  ));
+  echo "done";
+  header('Location:../log_in.php');
+  unset($_POST);
+  header('Location:pr_dashboard.php');
+      }catch(Exception $err){
+        echo $err->getMessage();
+    } 
+}
+unset($_POST);
+?>
+
+
+
+
 
  
 	<!-- jQuery Plugins -->

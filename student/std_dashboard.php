@@ -1,4 +1,6 @@
-
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -298,9 +300,9 @@
       <li>
        <a href="#">
          <i class='bx bx-user' ></i>
-         <span class="links_name">User</span>
+         <span class="links_name">Profile</span>
        </a>
-       <span class="tooltip">User</span>
+       <span class="tooltip">Profile</span>
      </li>
      <li>
        <a href="#">
@@ -312,54 +314,48 @@
      <li>
        <a href="#">
          <i class='bx bx-pie-chart-alt-2' ></i>
-         <span class="links_name">Analytics</span>
+         <span class="links_name">Applied Job</span>
        </a>
-       <span class="tooltip">Analytics</span>
+       <span class="tooltip">Applied Job</span>
      </li>
      <li>
        <a href="#">
-         <i class='bx bx-folder' ></i>
-         <span class="links_name">File Manager</span>
+         <i class='bx bxs-shopping-bags'></i>
+         <span class="links_name">Jobs </span>
        </a>
-       <span class="tooltip">Files</span>
+       <span class="tooltip">Jobs For Apply</span>
      </li>
      <li>
        <a href="#">
          <i class='bx bx-cart-alt' ></i>
-         <span class="links_name">Order</span>
+         <span class="links_name">Offers</span>
        </a>
-       <span class="tooltip">Order</span>
-     </li>
-     <li>
-       <a href="#">
-         <i class='bx bx-heart' ></i>
-         <span class="links_name">Saved</span>
-       </a>
-       <span class="tooltip">Saved</span>
+       <span class="tooltip">Offer from company</span>
      </li>
      <li>
        <a href="#">
          <i class='bx bx-cog' ></i>
-         <span class="links_name">Setting</span>
+         <span class="links_name">Update</span>
        </a>
-       <span class="tooltip">Setting</span>
+       <span class="tooltip">Update profile</span>
      </li>
      <li class="profile">
          <div class="profile-details">
            <i class='bx bxs-user-pin'></i>
            <div class="name_job">
-             <div class="name"><?php echo $_POST['uname'];?></div>
-             <div class="job">Web designer</div>
+             <div class="name"><?php echo $_SESSION['user_name'];?></div>
+             <div class="job">Student</div>
            </div>
          </div>
-         <i class='bx bx-log-out' id="log_out" ></i>
+         <a href="../log_out.php">
+         <i class='bx bx-log-out' id="log_out" ></i></a>
      </li>
     </ul>
   </div>
   <section class="home-section">
-      <div class="text">Dashboard<hr> <br>
+      <div class="text">Dashboard of Student <hr> <br>
       <?php
-		print_r($_POST);
+		print_r($_SESSION);
 	   ?></div>
   </section>
 

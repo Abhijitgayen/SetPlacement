@@ -1,4 +1,6 @@
-
+<?php 
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -348,11 +350,12 @@
          <div class="profile-details">
            <i class='bx bxs-user-pin'></i>
            <div class="name_job">
-             <div class="name"><?php echo $_POST['uname'];?></div>
-             <div class="job">Web designer</div>
+             <div class="name"><?php echo $_SESSION['user_name'];?></div>
+             <div class="job">placement Rep</div>
            </div>
          </div>
-         <i class='bx bx-log-out' id="log_out" ></i>
+         <a href="../log_out.php">
+         <i class='bx bx-log-out' id="log_out" ></i></a>
      </li>
     </ul>
   </div>

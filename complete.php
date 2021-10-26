@@ -40,6 +40,9 @@ if(isset($_POST['level']) && isset($_POST['rupassword']) && isset($_POST['remail
     ':passw'=>md5($_POST['rupassword']),
     ':level'=> $_POST['level']
   ));
+
+  $_SESSION['email_id']=$_POST['remail'];
+
      if($_POST['level']==1){
       header('Location:student/std_from.php');
     }

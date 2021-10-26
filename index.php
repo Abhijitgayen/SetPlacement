@@ -1,3 +1,6 @@
+<?php 
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -170,15 +173,39 @@
                <div class="candidates"><a href="#">Candidates</a> </div>
                <div class="company"><a href="#">Company</a> </div>
                <div class="about_us"><a href="#">About Us</a></div>
-               <div class="login"><a href="log_in.php">Login</a></div>
-               
+
+               <?php
+               if(isset($_SESSION['user_name'] )|| isset($_SESSION['email_id'])){
+               echo'<div class="logt_out"><a href="log_out.php"><i class="bx bx-log-out" id="log_out" ></i> Log Out</a></div>';
+                }
+                else{
+                 echo'<div class="login"><a href="log_in.php"><i class="bx bx-log-in"></i> Log in</a></div>';
+
+                }
+
+               ?>
+
+                              
           </div>
           <div class="nav__toggle" id="nav-toggle">
             <i class='bx bx-menu'></i>
         </div>
      </section>
      <div class="home_all">
-          <div class="home_title">IITG Placement Protal</div>
+          <div class="home_title">IITG Placement Protal
+
+Searchley uses functional cookies and non-personalized content. Click 'OK' to allow us and our partners to use your data for the best experience! Learn more    
+OK
+Page 1 of about 2.170.000 results for hipaa compliant texting - 0.416 sec.
+
+Searchley uses functional cookies and non-personalized content. Click 'OK' to allow us and our partners to use your data for the best experience! Learn more    
+OK
+Page 1 of about 2.170.000 results for hipaa compliant texting - 0.416 sec.
+<?php
+print_r($_SESSION);
+
+?>
+          </div>
      </div>
 
 

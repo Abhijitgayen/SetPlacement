@@ -131,9 +131,9 @@ require_once '../connect.php';
               	<div class="form-group">
                 <h4>E-Mail Address: </h4>
                 </div>
-              	<div class="form-group">
-                <input class="form-control input-lg" type="text" id="email" name="email" placeholder="Email *" required>
-              	</div>
+                <div class="form-group">
+                <input class="form-control input-lg" type="text" id="email" name="email" placeholder="<?php echo $_SESSION['email_id'];?>" value="<?php echo $_SESSION['email_id'];?>"required>
+                </div>            
               	<div class="form-group">
                 <h4>Gender :  </h4>
                 </div>
@@ -231,7 +231,6 @@ require_once '../connect.php';
       </div>
     </section>
 <?php
-  print_r($_POST);
 if( isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['email']) && isset($_POST['gender']) && isset($_POST['programme']) && isset($_POST['dept']) && isset($_POST['cpi']) && isset($_POST['catagory']) && isset($_POST['contactno']) && isset($_POST['address']) && isset($_POST['ppo_ctc']) && isset($_POST['rollno'])&& isset($_POST['ppo_details'])){
   echo "string";
         
@@ -254,6 +253,8 @@ try{
       ':ppo_ctc'=> $_POST['ppo_ctc']
   ));
   echo "done";
+  header('Location:../log_in.php');
+  unset($_POST);
       }catch(Exception $err){
         echo $err->getMessage();
     } 

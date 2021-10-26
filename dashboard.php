@@ -1,6 +1,6 @@
  <?php 
-     require_once 'connect.php';
-
+ session_start();
+  require_once 'connect.php';
   ?>
 
 
@@ -26,7 +26,7 @@
             width: 100%;
             background-repeat: no-repeat;
           }
- </style>
+</style>
 </head>
 <body>
 
@@ -40,6 +40,11 @@ try{
   if($row['email_id']===$_POST['uname'] && $row['passwords']===md5($_POST['upassword'])){
      echo 'register succesfully';
      print_r($row);
+
+
+     $_SESSION['email_id']=$row['email_id'];
+
+
   if($row['levels']==1){
 
     //for student database chaeck.
@@ -49,6 +54,9 @@ try{
       if($row['email']===$_POST['uname']){
           $ok=1;
           $set=$row['levels'];
+        
+         $_SESSION['user_name']=$row['name'];
+
          header('Location:student/std_dashboard.php');
          break;
        }
@@ -72,7 +80,10 @@ try{
     while($row=$stmt2->fetch(PDO::FETCH_ASSOC)){
       if($row['email']===$_POST['uname']){
           $ok=1;
-         header('Location:company/com_dashboard.php');
+
+          $_SESSION['user_name']=$row['cmp_name'];
+
+         header('Location:company/comp_dashboard.php');
          break;
        }
        }
@@ -94,6 +105,9 @@ try{
     while($row=$stmt3->fetch(PDO::FETCH_ASSOC)){
       if($row['email']===$_POST['uname']){
           $ok=1;
+
+        $_SESSION['user_name']=$row['name'];
+
          header('Location:placement_rep/pr_dashboard.php');
          break;
        }
