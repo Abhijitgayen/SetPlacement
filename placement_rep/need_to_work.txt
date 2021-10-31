@@ -22,6 +22,6 @@ for upadte data  also show their profiles for
 1. job deatils.
 0. company details.
 0. placement rep.
-1. Student details for approved.
-2. job profile for aproved.
-3. applied job for approved.
+2. Student details for approved.
+3. job profile for aproved.
+4. applied job for approved.
