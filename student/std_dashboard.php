@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once'../connect.php';
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -262,11 +263,62 @@ session_start();
             color: #11101d;
             font-size: 25px;
             font-weight: 500;
-            margin: 18px
+            margin: 18px;
           }
-          @media (max-width: 620px) {
+          .profile_icon{
+            width: 200px;
+            height: 200px;
+            background-color: var(--background);
+            font-size: 149px;
+            padding: 5px;
+            text-align: center;
+            border-radius: 50%;
+            font-weight: bolder;
+            font-family: times;
+              box-shadow: 2px 35px 45px red;
+          }
+          .full_profile{
+            display: flex;
+
+            justify-content: space-around;
+
+          }
+          .full_profile .from_get{
+            padding: 5px 15px;
+            font-size: 21px;
+          
+          }
+          .left_part{
+            width: 30%;
+
+          }
+          .right_part{
+            width: 30%;
+
+          }
+          @media (max-width: 920px) {
             .sidebar li .tooltip{
               display: none;
+            }
+            .profile_icon{
+              order:  1;
+              margin: auto;
+              box-shadow: 2px 35px 45px red;
+            }
+            .full_profile{
+              font-size: 16px;
+              width: 100%;
+              flex-direction: column;
+            }
+            .left_part{
+              margin-top:25px; 
+              order: 2;
+              width: 100%;
+            }
+            .right_part{
+              margin-top: 25px;
+              order: 3;
+              width: 100%;
             }
           }
            @media (max-width: 400px) {
@@ -278,7 +330,6 @@ session_start();
             margin: 8px
           }
           }
-
     </style>
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
@@ -298,9 +349,9 @@ session_start();
          <span class="tooltip">Dashboard</span>
       </li>
       <li>
-       <a href="#">
+       <a href="std_update.php">
          <i class='bx bx-user' ></i>
-         <span class="links_name">Profile</span>
+         <span class="links_name">Update profile</span>
        </a>
        <span class="tooltip">Profile</span>
      </li>
@@ -355,8 +406,48 @@ session_start();
   <section class="home-section">
       <div class="text">Dashboard of Student <hr> <br>
       <?php
-		print_r($_SESSION);
-	   ?></div>
+     ?></div>
+
+
+<?php
+
+try{
+$email_set=$_SESSION['email_id'] ;
+$stm5 = $conn->query("SELECT * FROM setplacement.student s WHERE s.email=\"$email_set\"  ");
+            if($stm5->rowcount() > 0){
+                echo " <div class='full_profile'>";
+                while($row = $stm5->fetch()){
+                  $name=$row['name'];
+                  echo "<div class='left_part'>";
+                  echo "<div class='from_get'>Name : ".$row['name']."</div>";
+                  echo "<div class='from_get'>Roll No : ".$row['rollNo']."</div>";
+                  echo "<div class='from_get'>Email ID : ".$row['email']."</div>";
+                  echo "<div class='from_get'>Gender : ".$row['gender']."</div>";
+                  echo "<div class='from_get'>Mobile No : ".$row['mobileNo']."</div>";
+                  if($row['ppo_details']==0){
+                  echo "<div class='from_get'>PPO : No ppo</div>";
+                  }
+                  else{
+                    echo "<div class='from_get'>PPO : No ppo</div>";
+                    echo "<div class='from_get'>PPO ctc : ".$row['ppo_ctc']."</div>";
+                  }
+                  echo"</div>";
+                  echo "<div class='right_part'> ";
+                  echo "<div class='from_get'>Programme : ".$row['programme']."</div>";
+                  echo "<div class='from_get'>Department : ".$row['depertment']."</div>";
+                  echo "<div class='from_get'>Category : ".$row['category']."</div>";
+                  echo "<div class='from_get address'>Parmenent Address : <br>".$row['parmenentAdress']."</div>";
+                  echo "</div>";
+                  echo "<div class='profile_icon'>$name[0]</div>";
+                }
+                echo "</div>";
+            }else{
+                echo "No Entries there";
+            }
+        }catch(Exception $err){
+            echo $err->getMessage();
+        }
+  ?>
   </section>
 
   <script type="text/javascript">

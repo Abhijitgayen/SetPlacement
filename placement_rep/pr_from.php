@@ -139,7 +139,7 @@ require_once '../connect.php';
                 <h4>E-Mail Address: </h4>
                 </div>
               	<div class="form-group">
-                <input class="form-control input-lg" type="text" id="email" name="email" placeholder="<?php echo $_SESSION['email_id'];?>" value="<?php echo $_SESSION['email_id'];?>"required>
+                <input class="form-control input-lg" type="text" id="email" name="email" placeholder="<?php echo $_SESSION['email_id'];?>" value="<?php echo $_SESSION['email_id'];?>">
               	</div>            
             </div>            
             <div class="col-md-6 latest-job "> 
@@ -161,12 +161,13 @@ require_once '../connect.php';
     </section>
 <?php
 if( isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['email']) && isset($_POST['contactno']) && isset($_POST['dept']) ){
+  $name=$_POST['fname']." ".$_POST['lname'];
 try{
   $sql="INSERT INTO setplacement.placement_rep(name,depertment,email,mobileNo) 
  VALUES(:name,:depertment,:email,:mobileNo)";
   $stmt=$conn->prepare($sql);
   $stmt->execute(array(
-      ':name'=> $_POST['fname'],
+      ':name'=> $name,
       ':email' => $_POST['email'],
       ':depertment'=> $_POST['dept'],
       ':mobileNo'=>$_POST['contactno']
@@ -174,7 +175,6 @@ try{
   echo "done";
   header('Location:../log_in.php');
   unset($_POST);
-  header('Location:pr_dashboard.php');
       }catch(Exception $err){
         echo $err->getMessage();
     } 
@@ -182,18 +182,5 @@ try{
 unset($_POST);
 ?>
 
-
-
-
-
- 
-	<!-- jQuery Plugins -->
-	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/owl.carousel.min.js"></script>
-	<script type="text/javascript" src="js/jquery.magnific-popup.js"></script>
-	<script type="text/javascript" src="js/main.js"></script>
-<!-- AdminLTE App -->
-<script src="js/adminlte.min.js"></script>
 </body>
 </html>

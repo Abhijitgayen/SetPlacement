@@ -30,10 +30,10 @@ require_once '../connect.php';
             background-repeat: no-repeat;
           }
           .content-header{
-          	width:80%;
-          	position: absolute;
-          	left:10%;
-          	right: 10%;
+            width:80%;
+            position: absolute;
+            left:10%;
+            right: 10%;
             padding: 20px;
           }
           .col-md-6{
@@ -116,52 +116,52 @@ require_once '../connect.php';
           <form method="post" id="registerCandidates" action="" enctype="multipart/form-data">
             <div class="all_from">
             <div class="col-md-6 latest-job ">
-            	<div class="form-group">
+              <div class="form-group">
                 <h4>First Name: </h4>
-            	</div>
-           		<div class="form-group">
+              </div>
+              <div class="form-group">
                 <input class="form-control input-lg" type="text" id="fname" name="fname" placeholder="First Name *" required>
-            	</div> 
-              	<div class="form-group">
+              </div> 
+                <div class="form-group">
                 <h4>Last Name: </h4>
                 </div>
-              	<div class="form-group">
+                <div class="form-group">
                 <input class="form-control input-lg" type="text" id="lname" name="lname" placeholder="Last Name *" required>
-              	</div>
-              	<div class="form-group">
+                </div>
+                <div class="form-group">
                 <h4>E-Mail Address: </h4>
                 </div>
                 <div class="form-group">
-                <input class="form-control input-lg" type="text" id="email" name="email" placeholder="<?php echo $_SESSION['email_id'];?>" value="<?php echo $_SESSION['email_id'];?>"required>
+                <input class="form-control input-lg" type="text" id="email" name="email" placeholder="<?php echo $_SESSION['email_id'];?>" value="<?php echo $_SESSION['email_id'];?>" >
                 </div>            
-              	<div class="form-group">
+                <div class="form-group">
                 <h4>Gender :  </h4>
                 </div>
-              	<div class="form-group">
+                <div class="form-group">
                 <select class="form-control input-lg" id="gender_set" name="gender"  required>
                   <option value="M">Male *</option>
                   <option value="F">Femal *</option>
                   <option value="O">Other *</option>
                 </select>
-              	</div>
-              	<div class="form-group">
+                </div>
+                <div class="form-group">
                 <h4>Programme : </h4>
                 </div>
-              	<div class="form-group">
+                <div class="form-group">
                 <input class="form-control input-lg" type="text"  name="programme" placeholder="Enter Programme *" required>
-              	</div>
-              	<div class="form-group">
+                </div>
+                <div class="form-group">
                 <h4>Department : </h4>
                 </div>
-              	<div class="form-group">
+                <div class="form-group">
                 <input class="form-control input-lg" type="text" id="dept" name="dept" placeholder="department *" required>
-              	</div>
-              	<div class="form-group">
+                </div>
+                <div class="form-group">
                 <h4>Cpi : </h4>
                 </div>
-              	<div class="form-group">
+                <div class="form-group">
                 <input class="form-control input-lg" type="number" step="0.01" id="cpi" name="cpi" placeholder="Current cpi *" required>
-              	</div> 
+                </div> 
                 <div class="form-group">
                 <h4>Upload Your Resume: </h4>
                 </div>  
@@ -230,10 +230,12 @@ require_once '../connect.php';
         </div>
       </div>
     </section>
+  </div>
 <?php
+print_r($_POST);
 if( isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['email']) && isset($_POST['gender']) && isset($_POST['programme']) && isset($_POST['dept']) && isset($_POST['cpi']) && isset($_POST['catagory']) && isset($_POST['contactno']) && isset($_POST['address']) && isset($_POST['ppo_ctc']) && isset($_POST['rollno'])&& isset($_POST['ppo_details'])){
   echo "string";
-        
+   $name=$_POST['fname']." ".$_POST['lname'];     
 try{
   $sql="INSERT INTO setplacement.student(rollNo , email ,gender ,mobileNo,name ,programme,cpi ,depertment ,category ,parmenentAdress ,ppo_details ,ppo_ctc) 
  VALUES(:rollNo,:email,:gender,:mobileNo,:name,:programme,:cpi,:depertment,:category,:parmenentAdress,:ppo_details,:ppo_ctc)";
@@ -243,7 +245,7 @@ try{
       ':email' => $_POST['email'],
       ':gender'=> $_POST['gender'],
       ':mobileNo'=>$_POST['contactno'],
-      ':name'=> $_POST['fname'],
+      ':name'=> $name,
       ':programme'=> $_POST['programme'],
       ':cpi' => $_POST['cpi'],
       ':depertment'=>$_POST['dept'],

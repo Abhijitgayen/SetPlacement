@@ -45,6 +45,7 @@ try{
      $_SESSION['email_id']=$row['email_id'];
 
 
+
   if($row['levels']==1){
 
     //for student database chaeck.
@@ -56,6 +57,7 @@ try{
           $set=$row['levels'];
         
          $_SESSION['user_name']=$row['name'];
+           $_SESSION['user_id']=$row['rollNo'];
 
          header('Location:student/std_dashboard.php');
          break;
@@ -82,6 +84,7 @@ try{
           $ok=1;
 
           $_SESSION['user_name']=$row['cmp_name'];
+           $_SESSION['user_id']=$row['cmp_id'];
 
          header('Location:company/comp_dashboard.php');
          break;
@@ -107,6 +110,7 @@ try{
           $ok=1;
 
         $_SESSION['user_name']=$row['name'];
+         $_SESSION['user_id']=$row['pr_id'];
 
          header('Location:placement_rep/pr_dashboard.php');
          break;

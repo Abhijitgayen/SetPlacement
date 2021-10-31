@@ -128,10 +128,10 @@ require_once '../connect.php';
             	</div> 
               	<div class="form-group">
                 <h4>E-Mail Address: </h4>
-                </div> 
+                </div>
                 <div class="form-group">
-                <input class="form-control input-lg" type="text" id="email" name="email" placeholder="Enter email id *" required>
-              </div>                  
+                <input class="form-control input-lg" type="text" id="email" name="email" placeholder="<?php echo $_SESSION['email_id'];?>" value="<?php echo $_SESSION['email_id'];?>" >
+                </div>                 
             </div>            
             <div class="col-md-6 latest-job ">
                 <div class="form-group">

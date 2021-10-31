@@ -193,17 +193,20 @@ session_start();
      </section>
      <div class="home_all">
           <div class="home_title">IITG Placement Protal
-
-Searchley uses functional cookies and non-personalized content. Click 'OK' to allow us and our partners to use your data for the best experience! Learn more    
-OK
-Page 1 of about 2.170.000 results for hipaa compliant texting - 0.416 sec.
-
-Searchley uses functional cookies and non-personalized content. Click 'OK' to allow us and our partners to use your data for the best experience! Learn more    
-OK
-Page 1 of about 2.170.000 results for hipaa compliant texting - 0.416 sec.
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
 <?php
 print_r($_SESSION);
-
 ?>
           </div>
      </div>
