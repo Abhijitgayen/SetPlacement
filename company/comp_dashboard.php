@@ -368,18 +368,18 @@ require_once'../connect.php';
        <span class="tooltip">Messages</span>
      </li>
      <li>
-       <a href="#">
-         <i class='bx bx-pie-chart-alt-2' ></i>
-         <span class="links_name">Analytics</span>
+       <a href="comp_job_set.php">
+         <i class='bx bxs-add-to-queue'></i>
+         <span class="links_name"> Create a Job</span>
        </a>
-       <span class="tooltip">Analytics</span>
+       <span class="tooltip">Create a Job</span>
      </li>
      <li>
-       <a href="#">
+       <a href="comp_prev_job.php">
          <i class='bx bx-folder' ></i>
-         <span class="links_name">File Manager</span>
+         <span class="links_name">Previus Job Details</span>
        </a>
-       <span class="tooltip">Files</span>
+       <span class="tooltip">Previus Job details</span>
      </li>
      <li>
        <a href="#">
