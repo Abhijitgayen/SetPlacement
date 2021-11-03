@@ -26,11 +26,14 @@ require_once'../connect.php';
             box-sizing: border-box;
             font-family: "Poppins" , sans-serif;
           }
+          html{
+                background-image: linear-gradient(25deg, white,whitesmoke,var(--background));
+          }
           .logo_name b{
             color: var(--background);
           }
-                    .content-header{
-            width:50%;
+        .content-header{
+            width:100%;
             position: absolute;
             left:25%;
             right: 25%;
@@ -319,13 +322,12 @@ require_once'../connect.php';
             background: none;
           }
           .home-section{
-            width: 100%;
+            margin: auto;
             position: relative;
-            background-image: linear-gradient(25deg, white,whitesmoke,var(--background));
             min-height: 100vh;
             top: 0;
             left: 78px;
-            width: calc(100% - 78px);
+            width: calc(50% - 78px);
             transition: all 0.5s ease;
             z-index: 2;
           }
@@ -378,6 +380,10 @@ require_once'../connect.php';
             .sidebar li .tooltip{
               display: none;
             }
+             .home-section{
+              width: calc(100% - 78px);
+              margin: 0px;
+             }
             .profile_icon{
               order:  1;
               margin: auto;
