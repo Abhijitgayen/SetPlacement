@@ -432,7 +432,7 @@ require_once'../connect.php';
       <div class="container">
         <div class="row latest-job margin-top-50 margin-bottom-20 bg-white">
           <h2 class="text-center margin-bottom-20 margin-top-20 uper">Set a Job Profile</h2>
-          <form method="post" id="registerCandidates" action="slot_job_set.php" enctype="multipart/form-data">
+          <form method="post" id="registerCandidates" action="" enctype="multipart/form-data">
             <div class="all_from">
             <div class="col-md-6 latest-job ">
               <div class="form-group">
@@ -501,7 +501,7 @@ require_once'../connect.php';
                 <h4>Programme : </h4>
                 </div>  
                 <div class="form-group">
-                <select class="form-control form-group input-lg multiple_select" name="Branches[]" required multiple>
+                <select class="form-control form-group multiple_select" name="Branches[]" required multiple>
                   <option value="All Programme">ALL Programme</option>
                   <option value="BTech">BTech</option>
                   <option value="MTech">MTech</option>
@@ -539,8 +539,98 @@ require_once'../connect.php';
           </div>
           </form>
 <?php
+if(isset($_POST['dname']) && isset($_POST['type_job']) && isset($_POST['joining_date']) && isset($_POST['last_date']) && isset($_POST['ctc']) && isset($_POST['cpi']) && isset($_POST['catagory']) && isset($_POST['details']) && isset($_POST['Branches']) && isset($_POST['dept'])){
+  try{
+  $sql="INSERT INTO setplacement.recomendation( cmp_id, recom_word,rec_key) VALUES(:cmp_id,:recom_word,:rec_key)";
+  $stmt=$conn->prepare($sql);
+  $stmt->execute(array(
+      ':cmp_id'=> $_SESSION['user_id'],
+      ':recom_word' => $_POST['dname'],
+      ':rec_key'=> $_POST['catagory']
+  ));
+  }catch(Exception $err){
+        echo $err->getMessage();
+  }
+  $rec_id=-1;
+  $key=$_POST['catagory'];
+  $word=$_POST['dname'];
+  $cmp_id=$_SESSION['user_id'];
+  try{
+    $stmt=$conn->query("SELECT * FROM setplacement.recomendation r WHERE r.recom_word=\"$word \" AND r.rec_key= \"$key\" AND r.cmp_id=$cmp_id ");
+    while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
+      $rec_id=$row['rec_id'];
+    }
 
-print_r($_POST);
+  }catch(Exception $err){
+        echo $err->getMessage();
+  }
+  echo $rec_id;
+//data insert for student from
+
+ try{
+  $curr_date=date("Y-m-d");
+  $sql="INSERT INTO setplacement.job( ctc,lastDate,joiningDate,details,rec_id,typeJob,cpiCutOff,cmp_id,adertiseDate) VALUES(:ctc,:lastDate,:joiningDate,:details,:rec_id,:typeJob,:cpiCutOff,:cmp_id,:adertiseDate)";
+  $stmt=$conn->prepare($sql);
+  $stmt->execute(array(
+    ':ctc'=> $_POST['ctc'],
+    ':lastDate'=>$_POST['last_date'],
+    ':joiningDate' =>$_POST['joining_date'],
+    ':details'=>$_POST['details'],
+    ':rec_id'=>$rec_id,
+    ':typeJob'=>$_POST['type_job'],
+    ':cpiCutOff'=>$_POST['cpi'],
+    ':cmp_id' =>$cmp_id,
+    ':adertiseDate' =>$curr_date
+  ));
+  //echo "string";
+ }catch(Exception $err){
+        echo $err->getMessage();
+  }
+   try{
+    $stmt=$conn->query("SELECT * FROM setplacement.job r WHERE  r.rec_id= $rec_id AND r.cmp_id=$cmp_id ");
+    while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
+      $job_id=$row['job_id'];
+      echo $job_id;
+    }
+  }catch(Exception $err){
+        echo $err->getMessage();
+  }
+//print_r($_POST['dept']);
+//echo $_POST['dept'][0];
+  //data in programme job
+foreach ( $_POST['dept'] as $dept) {
+  try { 
+  $sql="INSERT INTO setplacement.programme_job( job_id, programme_name) VALUES(:job_id,:programme_name)";
+  $stmt=$conn->prepare($sql);
+  $stmt->execute(array(
+      ':job_id'=> $job_id,
+      ':programme_name' => $dept
+  ));
+  }catch(Exception $err){
+        echo $err->getMessage();
+  }
+  //echo $dept;
+}
+
+  //data in depertment job
+foreach ( $_POST['Branches'] as $ban) {
+  try { 
+  $sql="INSERT INTO setplacement.branch_job( job_id, branch_name) VALUES(:job_id,:branch_name)";
+  $stmt=$conn->prepare($sql);
+  $stmt->execute(array(
+      ':job_id'=> $job_id,
+      ':branch_name' => $ban
+  ));
+  }catch(Exception $err){
+        echo $err->getMessage();
+  }
+  //echo $ban;
+}
+$_SESSION['slot']=$_POST['no_slot'];
+$_SESSION['job_id']=$job_id;
+unset($_POST);
+header('Location:slot_job_set.php');
+}
 ?>
           
         </div>
@@ -584,6 +674,3 @@ print_r($_POST);
 
 </body>
 </html>
-
-<?php
-?>

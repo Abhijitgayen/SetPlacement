@@ -69,8 +69,8 @@ CREATE TABLE job(
 );
 
  CREATE TABLE slot(
-     slot_id int not NULL,
-     slot_no INT,
+     slot_id int not NULL AUTO_INCREMENT,,
+     slot_type varchar(50) not null,
      slot_date Date NOT NULL,
      slot_time time NOT NULL,
      job_id INT NOT NULL,
@@ -149,7 +149,7 @@ CREATE TABLE branch_job(
 CREATE TABLE programme_job(
 	id int NOT NULL AUTO_INCREMENT,
 	job_id int NOT NULL,
-	programme_name varchar(10)not NULL,
+	programme_name varchar(100)not NULL,
 	CONSTRAINT programme_job_pk PRIMARY KEY(id),
 	CONSTRAINT programme_job_fk FOREIGN KEY (job_id) REFERENCES job(job_id) on DELETE CASCADE on UPDATE CASCADE
 );
