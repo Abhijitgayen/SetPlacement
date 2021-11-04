@@ -480,7 +480,12 @@ require_once'../connect.php';
                 <div class="form-group">
                 <input class="form-control input-lg" type="number"  id="no_slot" name="no_slot" placeholder="Enter No of slot *" required>
                 </div> 
-
+                <div class="form-group">
+                <h4>No of vacency : </h4>
+                </div>
+                <div class="form-group">
+                <input class="form-control input-lg" type="number"  id="vacency" name="vacency" placeholder="Enter No of vacency*" required>
+                </div> 
 
             </div>            
             <div class="col-md-6 latest-job ">
@@ -539,7 +544,7 @@ require_once'../connect.php';
           </div>
           </form>
 <?php
-if(isset($_POST['dname']) && isset($_POST['type_job']) && isset($_POST['joining_date']) && isset($_POST['last_date']) && isset($_POST['ctc']) && isset($_POST['cpi']) && isset($_POST['catagory']) && isset($_POST['details']) && isset($_POST['Branches']) && isset($_POST['dept'])){
+if(isset($_POST['dname']) && isset($_POST['type_job']) && isset($_POST['joining_date']) && isset($_POST['last_date']) && isset($_POST['ctc']) && isset($_POST['cpi'])&& isset($_POST['vacency']) && isset($_POST['catagory']) && isset($_POST['details']) && isset($_POST['Branches']) && isset($_POST['dept'])){
   try{
   $sql="INSERT INTO setplacement.recomendation( cmp_id, recom_word,rec_key) VALUES(:cmp_id,:recom_word,:rec_key)";
   $stmt=$conn->prepare($sql);
@@ -564,12 +569,12 @@ if(isset($_POST['dname']) && isset($_POST['type_job']) && isset($_POST['joining_
   }catch(Exception $err){
         echo $err->getMessage();
   }
-  echo $rec_id;
+  print_r($_POST);
 //data insert for student from
 
  try{
   $curr_date=date("Y-m-d");
-  $sql="INSERT INTO setplacement.job( ctc,lastDate,joiningDate,details,rec_id,typeJob,cpiCutOff,cmp_id,adertiseDate) VALUES(:ctc,:lastDate,:joiningDate,:details,:rec_id,:typeJob,:cpiCutOff,:cmp_id,:adertiseDate)";
+  $sql="INSERT INTO setplacement.job( ctc,lastDate,joiningDate,details,rec_id,typeJob,vacency,cpiCutOff,cmp_id,adertiseDate) VALUES(:ctc,:lastDate,:joiningDate,:details,:rec_id,:typeJob,:vacency,:cpiCutOff,:cmp_id,:adertiseDate)";
   $stmt=$conn->prepare($sql);
   $stmt->execute(array(
     ':ctc'=> $_POST['ctc'],
@@ -580,9 +585,9 @@ if(isset($_POST['dname']) && isset($_POST['type_job']) && isset($_POST['joining_
     ':typeJob'=>$_POST['type_job'],
     ':cpiCutOff'=>$_POST['cpi'],
     ':cmp_id' =>$cmp_id,
+    ':vacency'=>$_POST['vacency'],
     ':adertiseDate' =>$curr_date
   ));
-  //echo "string";
  }catch(Exception $err){
         echo $err->getMessage();
   }
@@ -592,6 +597,7 @@ if(isset($_POST['dname']) && isset($_POST['type_job']) && isset($_POST['joining_
       $job_id=$row['job_id'];
       echo $job_id;
     }
+    echo $job_id;
   }catch(Exception $err){
         echo $err->getMessage();
   }
@@ -621,6 +627,7 @@ foreach ( $_POST['Branches'] as $ban) {
       ':job_id'=> $job_id,
       ':branch_name' => $ban
   ));
+  echo "done";
   }catch(Exception $err){
         echo $err->getMessage();
   }

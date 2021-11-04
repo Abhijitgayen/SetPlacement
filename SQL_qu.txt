@@ -9,9 +9,9 @@ CREATE TABLE student(
     gender char(1)not NULL,
     mobileNo varchar(10) NOT NULL,
     name varchar(25) NOT NULL,
-    programme varchar(25) NOT NULL,
+    programme varchar(50) NOT NULL,
     cpi real NOT NULL,
-    depertment varchar(25) NOT NULL,
+    depertment varchar(50) NOT NULL,
     category varchar(15),
     parmenentAdress varchar(500)NOT NULL,
     ppo_details boolean not null,
@@ -39,7 +39,7 @@ create table company (
 
 CREATE TABLE placement_rep(
     pr_id int NOT NULL AUTO_INCREMENT,
-    name varchar(20),
+    name varchar(50),
     depertment varchar(25),
     email varchar(50),
     mobileNo varchar(10),
@@ -56,6 +56,7 @@ CREATE TABLE recomendation(
 CREATE TABLE job(
     job_id int NOT NULL AUTO_INCREMENT,
     ctc int NOT NULL ,
+   vacency int not null,
     lastDate Date NOT NULL,
     joiningDate Date NOT NULL,
     details varchar(500)NOT NULL,
@@ -69,7 +70,7 @@ CREATE TABLE job(
 );
 
  CREATE TABLE slot(
-     slot_id int not NULL AUTO_INCREMENT,,
+     slot_id int not NULL AUTO_INCREMENT,
      slot_type varchar(50) not null,
      slot_date Date NOT NULL,
      slot_time time NOT NULL,
@@ -81,7 +82,7 @@ CREATE TABLE job(
  CREATE TABLE apply(
      rollNo int NOT NULL ,
      job_id INT NOT NULL,
-     apply_time time,
+     apply_time DATE,
      cv_id INT,
      CONSTRAINT apply_pk PRIMARY KEY(job_id,rollNo),
      CONSTRAINT apply_fk_1 FOREIGN KEY (cv_id) REFERENCES cv(cv_id) on DELETE CASCADE on UPDATE CASCADE,
@@ -142,7 +143,7 @@ CREATE TABLE job(
 CREATE TABLE branch_job(
 	id int NOT NULL AUTO_INCREMENT,
 	job_id int NOT NULL,
-	branch_name varchar(10)not NULL,
+	branch_name varchar(50)not NULL,
 	CONSTRAINT branch_job_pk PRIMARY KEY(id),
 	CONSTRAINT branch_job_fk FOREIGN KEY (job_id) REFERENCES job(job_id) on DELETE CASCADE on UPDATE CASCADE
 );

@@ -261,13 +261,15 @@ require_once'../connect.php';
             width: calc(100% - 78px);
           }
           .home-section .text{
-
             display: inline-block;
             color: #11101d;
-            font-size: 25px;
-            font-weight: 500;
+            
             margin:5%;
-            width: 90%;
+           width: 97%;
+          }
+          .text h1{
+            font-size: 2rem;
+            font-weight: 500;
           }
           .profile_icon{
             width: 200px;
@@ -285,7 +287,9 @@ require_once'../connect.php';
             margin-top: 25px;
             width: 100%;
             display: flex;
+            padding: 20px;
             justify-content: space-around;
+            background-image: linear-gradient(25deg,var(--background),whitesmoke,white);
 
           }
           .full_profile .from_get{
@@ -326,7 +330,11 @@ require_once'../connect.php';
               width: 100%;
             }
           }
+          .btn{
+            padding: 3px;
+          }
            @media (max-width: 400px) {
+          }
           .home-section .text{
             display: inline-block;
             color: #11101d;
@@ -415,33 +423,69 @@ require_once'../connect.php';
     </ul>
   </div>
   <section class="home-section">
-      <div class="text">Old Job details <hr>
-        
+      <div class="text"><h1>Old Job details </h1><hr>    
 <?php
 
 try{
 $cmp_id=$_SESSION['user_id'] ;
-echo "$cmp_id";
+//echo "$cmp_id";
+$profile='none';
 $stm5 = $conn->query("SELECT * FROM setplacement.job s WHERE s.cmp_id=\"$cmp_id\"  ");
             if($stm5->rowcount() > 0){
                
                 while($row = $stm5->fetch()){
                   //print_r($row);
                   echo " <div class='full_profile'>";
+
+                  $rec_id=$row['rec_id'];
+                  $job_id=$row['job_id'];
+                  //get profile name 
+                  try {
+                    $stmt=$conn->query("SELECT * FROM SetPlacement.recomendation r WHERE r.rec_id=\"$rec_id\"  ");
+                    if($stmt->rowcount() > 0){
+                      while ($set=$stmt->fetch()) {
+                        $profile=$set['recom_word'];
+                      }
+                   }                    
+                  } catch (Exception $err) {
+                      echo $err->getMessage();
+                  }
+
                   $name=$row['cmp_name'];
                   echo "<div class='left_part'>";
-                  echo "<div class='from_get'>cpi Cutoff : ".$row['cpiCutOff']."</div>";
+                   echo "<div class='from_get'>Profile Name : ".$profile."</div>";
+                  echo "<div class='from_get'>cpi Cut off : ".$row['cpiCutOff']."</div>";
                   echo "<div class='from_get'>ctc : ".$row['ctc']."</div>";
                   echo "<div class='from_get'>Joining Date : ".$row['joiningDate']."</div>";
                   echo "<div class='from_get'>Last Date To Apply : ".$row['lastDate']."</div>";
                   echo "<div class='from_get'>Type Of Job : ".$row['typeJob']."</div>";
-
+                  echo "<form action='details.php' method='POST'>
+                <button class='btn'>more detils</button> 
+                <input type='number' name='job_id' value='".$job_id."' hidden>
+        </form>";
+                 
+                 /* echo "<div class='from_get'>branch and programe :" ;
+                  try {
+                    $stmt=$conn->query("SELECT p.programme_name ,b.branch_name FROM setplacement.programme_job p , setplacement.branch_job b WHERE p.job_id=$job_id AND p.job_id=b.job_id  ");
+                    if($stmt->rowcount() > 0){
+                      while ($net=$stmt->fetch()) {
+                        echo $net['programme_name']." ".$net['branch_name']."<br>";
+                        //for($it=0;$it<sizeof())
+                      }
+                   }                    
+                  } catch (Exception $err) {
+                      echo $err->getMessage();
+                  }
+                  echo "</div>";*/
                   echo "</div>";
+
+
+
                   echo "<div class='right_part'> ";
 
                   echo "<div class='from_get details'>Comapny details : <br>".$row['details']."</div>";
                   echo "</div>";
-                  echo "<div class='profile_icon'>$name[0]</div>";
+                  echo "<div class='profile_icon'>$profile[0]</div>";
                   echo "</div><br>";
 
                 }

@@ -353,42 +353,35 @@ require_once'../connect.php';
          <i class='bx bx-user' ></i>
          <span class="links_name">Update profile</span>
        </a>
-       <span class="tooltip">Profile</span>
+       <span class="tooltip">update Profile</span>
      </li>
      <li>
-       <a href="#">
+       <a href="std_massage.php">
          <i class='bx bx-chat' ></i>
          <span class="links_name">Messages</span>
        </a>
        <span class="tooltip">Messages</span>
      </li>
      <li>
-       <a href="#">
+       <a href="std_prv_job.php">
          <i class='bx bx-pie-chart-alt-2' ></i>
          <span class="links_name">Applied Job</span>
        </a>
        <span class="tooltip">Applied Job</span>
      </li>
      <li>
-       <a href="#">
+       <a href="std_job_apply.php">
          <i class='bx bxs-shopping-bags'></i>
-         <span class="links_name">Jobs </span>
+         <span class="links_name">Jobs for Apply </span>
        </a>
        <span class="tooltip">Jobs For Apply</span>
      </li>
      <li>
-       <a href="#">
+       <a href="std_offer.php">
          <i class='bx bx-cart-alt' ></i>
          <span class="links_name">Offers</span>
        </a>
        <span class="tooltip">Offer from company</span>
-     </li>
-     <li>
-       <a href="#">
-         <i class='bx bx-cog' ></i>
-         <span class="links_name">Update</span>
-       </a>
-       <span class="tooltip">Update profile</span>
      </li>
      <li class="profile">
          <div class="profile-details">
@@ -421,6 +414,7 @@ $stm5 = $conn->query("SELECT * FROM setplacement.student s WHERE s.email=\"$emai
                   echo "<div class='left_part'>";
                   echo "<div class='from_get'>Name : ".$row['name']."</div>";
                   echo "<div class='from_get'>Roll No : ".$row['rollNo']."</div>";
+                  //$_SESSION['rollNo']=$row['rollNo'];
                   echo "<div class='from_get'>Email ID : ".$row['email']."</div>";
                   echo "<div class='from_get'>Gender : ".$row['gender']."</div>";
                   echo "<div class='from_get'>Mobile No : ".$row['mobileNo']."</div>";

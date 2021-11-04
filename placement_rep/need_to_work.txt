@@ -1,30 +1,30 @@
 # need to create from
-for upadte data  also show their profiles for
-0.company
-0.student
-0. placemnt rep
+1. cv data
+17 update cv data.
+2. set cv_id when apply any job
 
 #work on the student dashboard
-1. applid jobs with solt details
-2. job for apply botton.
 3. massage for profile of students
 4. massage for applied jobs
 
 #work for company
-0.form for create jobs with
-0. slot details theirs.
-1. need to add those database
-0.all detils of privius job(need to work)
-3. slot details for each jobs
-2. student list who apply for this job profiles.
+5. massseege form placement rep.
+6. student list who apply for this job profiles.
+7.there will be student name also slot details for this
 
 #work for placement rep
-0. placemnet rep dashboard.
-0. upadte profile for placemnet rep. 
-0. student details.
-1. job deatils.
-0. company details.
-0. placement rep.
-2. Student details for approved.
-3. job profile for aproved.
-4. applied job for approved.
+8. job deatils.
+9. Student details for approved.
+10. job profile for aproved.
+11. applied job for approved.
+
+
+# need to create a dasboard for admin of this project.
+12. dashboard
+13.all  student details.
+14.company details.
+15. placement rep details.
+16. no of requrement for this company for corresponding job details. 
+
+#need to work for all profile
+18. After verify all data by placemnt rep we need not allow all to upadte thrir data.

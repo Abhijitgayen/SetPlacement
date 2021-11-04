@@ -357,7 +357,7 @@ require_once'../connect.php';
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
    </head>
 <body>
-  <div class="sidebar">
+    <div class="sidebar">
     <div class="logo-details">
         <div class="logo_name"><b>S</b>et<b>P</b>lacement<b>.</b></div>
         <i class='bx bx-menu' id="btn" ></i>
@@ -371,46 +371,39 @@ require_once'../connect.php';
          <span class="tooltip">Dashboard</span>
       </li>
       <li>
-       <a href="std_profile.php">
+       <a href="std_update.php">
          <i class='bx bx-user' ></i>
-         <span class="links_name">Profile</span>
+         <span class="links_name">Update profile</span>
        </a>
-       <span class="tooltip">Profile</span>
+       <span class="tooltip">update Profile</span>
      </li>
      <li>
-       <a href="#">
+       <a href="std_massage.php">
          <i class='bx bx-chat' ></i>
          <span class="links_name">Messages</span>
        </a>
        <span class="tooltip">Messages</span>
      </li>
      <li>
-       <a href="#">
+       <a href="std_prv_job.php">
          <i class='bx bx-pie-chart-alt-2' ></i>
          <span class="links_name">Applied Job</span>
        </a>
        <span class="tooltip">Applied Job</span>
      </li>
      <li>
-       <a href="#">
+       <a href="std_job_apply.php">
          <i class='bx bxs-shopping-bags'></i>
-         <span class="links_name">Jobs </span>
+         <span class="links_name">Jobs for Apply </span>
        </a>
        <span class="tooltip">Jobs For Apply</span>
      </li>
      <li>
-       <a href="#">
+       <a href="std_offer.php">
          <i class='bx bx-cart-alt' ></i>
          <span class="links_name">Offers</span>
        </a>
        <span class="tooltip">Offer from company</span>
-     </li>
-     <li>
-       <a href="#">
-         <i class='bx bx-cog' ></i>
-         <span class="links_name">Update</span>
-       </a>
-       <span class="tooltip">Update profile</span>
      </li>
      <li class="profile">
          <div class="profile-details">

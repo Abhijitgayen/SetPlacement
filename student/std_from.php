@@ -144,17 +144,37 @@ require_once '../connect.php';
                   <option value="O">Other *</option>
                 </select>
                 </div>
-                <div class="form-group">
+                 <div class="form-group">
                 <h4>Programme : </h4>
-                </div>
+                </div>  
                 <div class="form-group">
-                <input class="form-control input-lg" type="text"  name="programme" placeholder="Enter Programme *" required>
+                <select class="form-control form-group " name="programme" required >
+                  <option value="BTech">BTech</option>
+                  <option value="MTech">MTech</option>
+                   <option value="M.Sc">M.Sc</option>
+                  <option value="M.A">M.A</option>
+                  <option value="BDes">BDes</option>
+                  <option value="MDes">MDes</option>
+                  <option value="PhD">PhD</option>
+                </select>
                 </div>
                 <div class="form-group">
                 <h4>Department : </h4>
                 </div>
                 <div class="form-group">
-                <input class="form-control input-lg" type="text" id="dept" name="dept" placeholder="department *" required>
+                <select class="form-control form-group input-lg" name="dept" required >
+                  <option value="Bioscience & Bioengineering">Biosciences & Bioengineering</option>
+                  <option value="Chemincal Engineering">Chemincal Engineering</option>
+                  <option value="Chemistry">Chemistry</option>
+                  <option value="Civil Engineering">Civil Engineering</option>
+                  <option value="Computer Science">Computer Science and Engineering</option>
+                  <option value="Design">Design</option>
+                  <option value="Electronics & Electrical">Electronics & Electrical</option>
+                  <option value="Humanities and social Science">Humanities and social science</option>
+                  <option value="Mathematics">Mathematics</option>
+                  <option value="Mechanical Engineering">Mechanical Engineering</option>
+                  <option value="Physics">Physics</option>
+                </select>
                 </div>
                 <div class="form-group">
                 <h4>Cpi : </h4>

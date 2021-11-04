@@ -376,17 +376,17 @@ require_once'../connect.php';
      </li>
      <li>
        <a href="comp_prev_job.php">
-         <i class='bx bx-folder' ></i>
+         <i class='bx bx-list-ul' ></i>
          <span class="links_name">Previus Job Details</span>
        </a>
        <span class="tooltip">Previus Job details</span>
      </li>
      <li>
        <a href="#">
-         <i class='bx bx-cart-alt' ></i>
-         <span class="links_name">Order</span>
+         <i class='bx bx-list-check' ></i>
+         <span class="links_name">Offer Send</span>
        </a>
-       <span class="tooltip">Order</span>
+       <span class="tooltip">Offer Send</span>
      </li>
      <li>
        <a href="#">
@@ -394,13 +394,6 @@ require_once'../connect.php';
          <span class="links_name">Saved</span>
        </a>
        <span class="tooltip">Saved</span>
-     </li>
-     <li>
-       <a href="#">
-         <i class='bx bx-cog' ></i>
-         <span class="links_name">Setting</span>
-       </a>
-       <span class="tooltip">Setting</span>
      </li>
      <li class="profile">
          <div class="profile-details">
