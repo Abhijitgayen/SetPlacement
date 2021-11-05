@@ -296,6 +296,25 @@ require_once'../connect.php';
             width: 30%;
 
           }
+          .cv_sort{
+            display: flex;
+            margin-left: 25px;
+            margin-bottom: 25px;  
+          }
+          .cv_sort a, .btn{
+            color: white;
+            border-radius: 25px;
+            box-shadow: 1px 2px 25px black;
+            background-color:var(--background);
+            margin: 5px 5px 5px 15px;
+            text-decoration: none;
+            text-align: center;
+            padding: 5px 10px;
+
+          }
+          .cv_upload{
+            margin: 2px 1px 19px 25px;
+          }
           @media (max-width: 920px) {
             .sidebar li .tooltip{
               display: none;
@@ -414,7 +433,9 @@ $stm5 = $conn->query("SELECT * FROM setplacement.student s WHERE s.email=\"$emai
                   echo "<div class='left_part'>";
                   echo "<div class='from_get'>Name : ".$row['name']."</div>";
                   echo "<div class='from_get'>Roll No : ".$row['rollNo']."</div>";
+                  echo "<div class='from_get'>CPI : ".$row['cpi']."</div>";
                   //$_SESSION['rollNo']=$row['rollNo'];
+                  $rollNo=$row['rollNo'];
                   echo "<div class='from_get'>Email ID : ".$row['email']."</div>";
                   echo "<div class='from_get'>Gender : ".$row['gender']."</div>";
                   echo "<div class='from_get'>Mobile No : ".$row['mobileNo']."</div>";
@@ -442,6 +463,48 @@ $stm5 = $conn->query("SELECT * FROM setplacement.student s WHERE s.email=\"$emai
             echo $err->getMessage();
         }
   ?>
+    <div class="cv_all">
+      <div class="text"> Cv data <hr></div>
+      <?php
+      try {
+        $stmt=$conn->query("SELECT * FROM setplacement.cv WHERE rollNo=$rollNo");
+         if($stmt->rowcount() > 0){
+          while($set= $stmt->fetch()){
+            $cv_no=$set['cv_no'];
+            ?>
+
+            <div class="cv_sort">
+              <div>
+            <a href="<?php  echo $set['cv_data'];?>" target="_Abhijit"> Resume No <?php echo $set['cv_no'];  ?></a>
+            </div>
+            <?php
+          }
+          echo "  </div>";
+
+         }else{
+          echo "no Cv there ..Upload now ";
+         }
+      } catch (Exception $e) {
+        echo $e->getMessage();
+      }
+      ?>
+</div>
+<div class="upload_cv"  <?php  if($cv_no >= 3) echo "hidden";?> >
+<div class="text"> Upload Cv<hr></div>
+ <form  class="cv_upload"  method="post" id="cv_uplaad" action="cv_upload.php" enctype="multipart/form-data">
+  <div class="form-group">
+  </div>  
+  <div class="form-group">
+  <label style="color: #10161A;">File Format PDF Only!<br></label>
+  <input type="file" name="resume" class="btn btn-raised btn-link" accept="application/pdf" required>
+  <input type="number" name="cv_no" value="<?php echo $cv_no; ?>" hidden>
+  <button type="Submit" class="btn" name="Submit"> Submit</button>
+  </div>   
+  
+</form>
+    
+    
+  </div>
   </section>
 
   <script type="text/javascript">

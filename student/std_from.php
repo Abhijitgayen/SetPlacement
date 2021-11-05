@@ -252,12 +252,12 @@ require_once '../connect.php';
     </section>
   </div>
 <?php
-print_r($_POST);
+//print_r($_POST);
 if( isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['email']) && isset($_POST['gender']) && isset($_POST['programme']) && isset($_POST['dept']) && isset($_POST['cpi']) && isset($_POST['catagory']) && isset($_POST['contactno']) && isset($_POST['address']) && isset($_POST['ppo_ctc']) && isset($_POST['rollno'])&& isset($_POST['ppo_details'])){
   echo "string";
    $name=$_POST['fname']." ".$_POST['lname'];     
 try{
-  $sql="INSERT INTO setplacement.student(rollNo , email ,gender ,mobileNo,name ,programme,cpi ,depertment ,category ,parmenentAdress ,ppo_details ,ppo_ctc) 
+ $sql="INSERT INTO setplacement.student(rollNo , email ,gender ,mobileNo,name ,programme,cpi ,depertment ,category ,parmenentAdress ,ppo_details ,ppo_ctc) 
  VALUES(:rollNo,:email,:gender,:mobileNo,:name,:programme,:cpi,:depertment,:category,:parmenentAdress,:ppo_details,:ppo_ctc)";
   $stmt=$conn->prepare($sql);
   $stmt->execute(array(
@@ -274,8 +274,35 @@ try{
       ':ppo_details'=>$_POST['ppo_details'],
       ':ppo_ctc'=> $_POST['ppo_ctc']
   ));
+  //echo "<pre>";
+  //print_r($_FILES);
+  //echo "</pre>";
+      $cv_no=1;
+  //set pdf here
+  $pdf=$_FILES['resume']['name'];
+  $pdf_type=$_FILES['resume']['type'];
+  $pdf_size=$_FILES['resume']['size'];
+  $pdf_temp_loc=$_FILES['resume']['tmp_name'];
+  $pdf_store="cv_data/".$_POST['rollno']."_".$cv_no.".pdf";
+  move_uploaded_file($pdf_temp_loc, $pdf_store);
 
-  
+  try{
+
+  $sql="INSERT INTO setplacement.cv(rollNo,cv_no,cv_data) VALUES(:rollNo,:cv_no,:cv_data)";
+  $stmt=$conn->prepare($sql);
+  echo "string";
+  $stmt->execute(array(
+      ':rollNo'=> $_POST['rollno'],
+      ':cv_no' => $cv_no,
+      ':cv_data'=> $pdf_store
+  ));
+
+  }catch(Exception $err){
+    echo $err->getMessage();
+  }
+
+
+
   echo "done";
   header('Location:../log_in.php');
   unset($_POST);

@@ -6,7 +6,7 @@ require_once'../connect.php';
 
 $job_id=$_POST['job_id'];
 $roll_no=$_SESSION['user_id'];
-$cv_id=1;
+$cv_id=$_POST['cv_id'];
 $curr=date("Y-m-d");
 echo $job_id;
 echo $roll_no;

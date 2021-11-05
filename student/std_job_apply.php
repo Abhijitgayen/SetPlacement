@@ -355,7 +355,7 @@ require_once'../connect.php';
     </div>
     <ul class="nav-list">
       <li>
-        <a href="#">
+        <a href="std_dashboard.php">
           <i class='bx bx-grid-alt'></i>
           <span class="links_name">Dashboard</span>
         </a>
@@ -416,7 +416,9 @@ require_once'../connect.php';
 try{
 //echo "$cmp_id";
 $profile='none';
-$stm5 = $conn->query("SELECT * FROM setplacement.job j , setplacement.student s WHERE j.cpiCutOff <= s.cpi AND NOT EXISTS (SELECT * FROM setplacement.apply a WHERE a.job_id=j.job_id)");
+$rollNo=$_SESSION['user_id'];
+//echo $rollNo;
+$stm5 = $conn->query("SELECT * FROM setplacement.job j , setplacement.student s WHERE j.cpiCutOff <= s.cpi AND s.rollNo=$rollNo AND NOT EXISTS (SELECT * FROM setplacement.apply a WHERE a.job_id=j.job_id AND a.rollNo=s.rollNo) AND EXISTS (SELECT * FROM setplacement.programme_job jp WHERE jp.programme_name=s.programme OR jp.programme_name=\"All dept\") AND EXISTS (SELECT * FROM setplacement.branch_job bj WHERE bj.branch_name=s.depertment OR bj.branch_name=\"All Programme\")");
             if($stm5->rowcount() > 0){
                
                 while($row = $stm5->fetch()){
@@ -477,7 +479,7 @@ $stm5 = $conn->query("SELECT * FROM setplacement.job j , setplacement.student s 
                 }
               
             }else{
-                echo " No job there foe you";
+                echo " No job there for you";
             }
         }catch(Exception $err){
             echo $err->getMessage();

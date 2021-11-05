@@ -364,7 +364,7 @@ require_once'../connect.php';
     </div>
     <ul class="nav-list">
       <li>
-        <a href="#">
+        <a href="std_dashboard.php">
           <i class='bx bx-grid-alt'></i>
           <span class="links_name">Dashboard</span>
         </a>
@@ -455,32 +455,44 @@ require_once'../connect.php';
                   <option value="O">Other *</option>
                 </select>
                 </div>
-                <div class="form-group">
+                 <div class="form-group">
                 <h4>Programme : </h4>
-                </div>
+                </div>  
                 <div class="form-group">
-                <input class="form-control input-lg" type="text"  name="programme" placeholder="Enter Programme *" required>
+                <select class="form-control form-group " name="programme" required >
+                  <option value="BTech">BTech</option>
+                  <option value="MTech">MTech</option>
+                   <option value="M.Sc">M.Sc</option>
+                  <option value="M.A">M.A</option>
+                  <option value="BDes">BDes</option>
+                  <option value="MDes">MDes</option>
+                  <option value="PhD">PhD</option>
+                </select>
                 </div>
                 <div class="form-group">
                 <h4>Department : </h4>
                 </div>
                 <div class="form-group">
-                <input class="form-control input-lg" type="text" id="dept" name="dept" placeholder="department *" required>
+                <select class="form-control form-group input-lg" name="dept" required >
+                  <option value="Bioscience & Bioengineering">Biosciences & Bioengineering</option>
+                  <option value="Chemincal Engineering">Chemincal Engineering</option>
+                  <option value="Chemistry">Chemistry</option>
+                  <option value="Civil Engineering">Civil Engineering</option>
+                  <option value="Computer Science">Computer Science and Engineering</option>
+                  <option value="Design">Design</option>
+                  <option value="Electronics & Electrical">Electronics & Electrical</option>
+                  <option value="Humanities and social Science">Humanities and social science</option>
+                  <option value="Mathematics">Mathematics</option>
+                  <option value="Mechanical Engineering">Mechanical Engineering</option>
+                  <option value="Physics">Physics</option>
+                </select>
                 </div>
                 <div class="form-group">
                 <h4>Cpi : </h4>
                 </div>
                 <div class="form-group">
                 <input class="form-control input-lg" type="number" step="0.01" id="cpi" name="cpi" placeholder="Current cpi *" required>
-                </div> 
-                <div class="form-group">
-                <h4>Upload Your Resume: </h4>
-                </div>  
-                <div class="form-group">
-                <label style="color: #10161A;">File Format PDF Only!</label>
-                <input type="file" name="resume" class="btn btn-raised btn-link" required>
-                </div>                  
-
+                </div>                
             </div>            
             <div class="col-md-6 latest-job ">
               <div class="form-group">
@@ -543,11 +555,12 @@ if( isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['email']) &
   $catagory=$_POST['catagory'];
   $dept=$_POST['dept'];
   $address=$_POST['address'];
+  $cpi=$_POST['cpi'];
   $ppo_details=$_POST['ppo_details'];
   $ppo_ctc=$_POST['ppo_ctc'];
   $user_id=$_SESSION['user_id'];
 try{
-  $sql="UPDATE setplacement.student "." SET name= \"$name\", email=\"$email\", gender=\"$gender\", programme=\"$programme\",mobileNo=\"$contactno\", category=\"$catagory\", depertment=\"$dept \",parmenentAdress=\"$address\",ppo_details=\"$ppo_details\",ppo_ctc=\" $ppo_ctc\" "." WHERE rollno =$user_id";
+  $sql="UPDATE setplacement.student "." SET name= \"$name\", email=\"$email\", gender=\"$gender\", programme=\"$programme\",mobileNo=\"$contactno\", category=\"$catagory\", depertment=\"$dept \",parmenentAdress=\"$address\",ppo_details=\"$ppo_details\", cpi=$cpi ,ppo_ctc=\" $ppo_ctc\" "." WHERE rollno =$user_id";
   //echo $sql;
   $stmt =$conn->prepare($sql);
   $stmt->execute();

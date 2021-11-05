@@ -2,6 +2,7 @@
 session_start();
 require_once'../connect.php';
 ?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -245,6 +246,7 @@ require_once'../connect.php';
             background: none;
           }
           .home-section{
+            width: 100%;
             position: relative;
             background-image: linear-gradient(25deg, white,whitesmoke,var(--background));
             min-height: 100vh;
@@ -259,15 +261,69 @@ require_once'../connect.php';
             width: calc(100% - 78px);
           }
           .home-section .text{
+
             display: inline-block;
             color: #11101d;
             font-size: 25px;
             font-weight: 500;
-            margin: 18px
+            margin:5%;
+            width: 90%;
           }
-          @media (max-width: 620px) {
+          .profile_icon{
+            width: 200px;
+            height: 200px;
+            background-color: var(--background);
+            font-size: 149px;
+            padding: 5px;
+            text-align: center;
+            border-radius: 50%;
+            font-weight: bolder;
+            font-family: times;
+              box-shadow: 2px 35px 45px red;
+          }
+          .full_profile{
+            margin-top: 25px;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+
+          }
+          .full_profile .from_get{
+            padding: 5px 15px;
+            font-size: 21px;
+          
+          }
+          .left_part{
+            width: 40%;
+
+          }
+          .right_part{
+            width: 30%;
+
+          }
+          @media (max-width: 920px) {
             .sidebar li .tooltip{
               display: none;
+            }
+            .profile_icon{
+              order:  1;
+              margin: auto;
+              box-shadow: 2px 35px 45px red;
+            }
+            .full_profile{
+              font-size: 16px;
+              width: 100%;
+              flex-direction: column;
+            }
+            .left_part{
+              margin-top:25px; 
+              order: 2;
+              width: 100%;
+            }
+            .right_part{
+              margin-top: 25px;
+              order: 3;
+              width: 100%;
             }
           }
            @media (max-width: 400px) {
@@ -279,98 +335,92 @@ require_once'../connect.php';
             margin: 8px
           }
           }
-
     </style>
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
    </head>
 <body>
-    <div class="sidebar">
+  <div class="sidebar">
     <div class="logo-details">
         <div class="logo_name"><b>S</b>et<b>P</b>lacement<b>.</b></div>
         <i class='bx bx-menu' id="btn" ></i>
     </div>
     <ul class="nav-list">
       <li>
-        <a href="std_dashboard.php">
+        <a href="pr_dashboard.php">
           <i class='bx bx-grid-alt'></i>
           <span class="links_name">Dashboard</span>
         </a>
          <span class="tooltip">Dashboard</span>
       </li>
       <li>
-       <a href="std_update.php">
+       <a href="pr_update.php">
          <i class='bx bx-user' ></i>
-         <span class="links_name">Update profile</span>
+         <span class="links_name">profile update</span>
        </a>
-       <span class="tooltip">update Profile</span>
+       <span class="tooltip">profile upadte</span>
      </li>
      <li>
-       <a href="std_massage.php">
+       <a href="#">
          <i class='bx bx-chat' ></i>
          <span class="links_name">Messages</span>
        </a>
        <span class="tooltip">Messages</span>
      </li>
      <li>
-       <a href="std_prv_job.php">
+       <a href="student_details.php">
          <i class='bx bx-pie-chart-alt-2' ></i>
-         <span class="links_name">Applied Job</span>
+         <span class="links_name">Student details</span>
        </a>
-       <span class="tooltip">Applied Job</span>
+       <span class="tooltip">Student details</span>
      </li>
      <li>
-       <a href="std_job_apply.php">
+       <a href="comp_deatils.php">
+         <i class='bx bx-folder' ></i>
+         <span class="links_name">Company details</span>
+       </a>
+       <span class="tooltip">Comapany Details</span>
+     </li>
+     <li>
+       <a href="pr_details.php">
+         <i class='bx bx-list-ul'></i>
+         <span class="links_name">List of placement rep</span>
+       </a>
+       <span class="tooltip">List of placement rep</span>
+     </li>
+     <li>
+       <a href="#">
          <i class='bx bxs-shopping-bags'></i>
-         <span class="links_name">Jobs for Apply </span>
+         <span class="links_name">Job details</span>
        </a>
-       <span class="tooltip">Jobs For Apply</span>
+       <span class="tooltip">Job details</span>
      </li>
+     
      <li>
-       <a href="std_offer.php">
-         <i class='bx bx-cart-alt' ></i>
-         <span class="links_name">Offers</span>
+       <a href="#">
+         <i class='bx bx-cog' ></i>
+         <span class="links_name">Setting</span>
        </a>
-       <span class="tooltip">Offer from company</span>
+       <span class="tooltip">Setting</span>
      </li>
      <li class="profile">
          <div class="profile-details">
            <i class='bx bxs-user-pin'></i>
            <div class="name_job">
-             <div class="name"><?php echo $_SESSION['user_name'];?></div>
-             <div class="job">Student</div>
+             <div class="name"><?php echo $_SESSION['email_id'];?></div>
+             <div class="job">Admin </div>
            </div>
-         </div>
-         <a href="../log_out.php">
+         </div><a href="../log_out.php">
          <i class='bx bx-log-out' id="log_out" ></i></a>
      </li>
     </ul>
   </div>
   <section class="home-section">
-      <div class="text">Dashboard of Student <hr> <br>
-      <?php
-     ?></div>
-<?php
+    <div class="text">Dashboard of ADMIN <hr>
+        
 
-try{
-  print_r($_SESSION);
-$email_set=$_SESSION['email_id'] ;
-$stm5 = $conn->query("SELECT * FROM setplacement.student s WHERE s.email=\"$email_set\"  ");
-            if($stm5->rowcount() > 0){
-                echo "<table border ='2px'>";
-                while($row = $stm5->fetch()){
-                    echo "<tr><td>".$row[0]."</td></tr>"."<tr><td>".$row[1]."</td></tr>"."<tr><td>".$row[2]."</td></tr>"."<tr><td>".$row[3]."</td></tr>"."<tr><td>".$row[4]."</td></tr>"."<tr><td>".$row[5]."</td></tr>"."<tr><td>".$row[6]."</td></tr>"."<tr><td>".$row[7]."</td></tr>"."<tr><td>".$row[8]."</td></tr>"."<tr><td>".$row[9]."</td></tr>"."<tr><td>".$row[10]."</td></tr>"."<tr><td>".$row[11]."</td></tr>";
-                    print_r($row) ;
-                }
-                echo "</table>";
-            }else{
-                echo "No Entries there";
-            }
-            echo "string";
-        }catch(Exception $err){
-            echo $err->getMessage();
-        }
-  ?>
+
+</div>
   </section>
 
   <script type="text/javascript">

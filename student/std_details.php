@@ -395,7 +395,7 @@ require_once'../connect.php';
     </div>
     <ul class="nav-list">
       <li>
-        <a href="#">
+        <a href="std_dashboard.php">
           <i class='bx bx-grid-alt'></i>
           <span class="links_name">Dashboard</span>
         </a>
@@ -551,8 +551,37 @@ $stm5 = $conn->query("SELECT * FROM setplacement.job s WHERE s.job_id=\"$job_id\
     				 echo $err->getMessage();
    				}
    				  echo "</table></div>"; 
-            echo "<form action='std_job_set.php' method='POST'".$_POST['hidden'].">
-                 <input type='number' name='job_id' value='".$job_id."' hidden>
+            echo "<form action='std_job_set.php' method='POST'".$_POST['hidden'].">";
+            ?>
+            <select name="cv_id" required>
+              <?php 
+      $rollNo=$_SESSION['user_id'];
+      try {
+        $stmt=$conn->query("SELECT * FROM setplacement.cv WHERE rollNo=$rollNo");
+         if($stmt->rowcount() > 0){
+          while($set= $stmt->fetch()){
+            $cv_no=$set['cv_no'];
+            ?>
+            <option value="<?php echo $set['cv_id'];  ?>">
+              Resume No <?php echo $set['cv_no'];  ?>
+            </option>>
+           <?php
+          }
+          echo "  </select>";
+
+         }else{
+          echo "no Cv there ..Upload now ";
+         }
+      } catch (Exception $e) {
+        echo $e->getMessage();
+      }
+       ?>
+              
+
+
+
+            <?php
+                 echo "<input type='number' name='job_id' value='".$job_id."' hidden>
                 <button class='btn'>Apply</button> 
               </form>";
            // echo "<button class='btn'>Apply</button>";              

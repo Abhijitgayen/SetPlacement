@@ -355,7 +355,7 @@ require_once'../connect.php';
     </div>
     <ul class="nav-list">
       <li>
-        <a href="#">
+        <a href="std_dashboard.php">
           <i class='bx bx-grid-alt'></i>
           <span class="links_name">Dashboard</span>
         </a>
@@ -410,13 +410,14 @@ require_once'../connect.php';
     </ul>
   </div>
   <section class="home-section">
-      <div class="text"><h1>Old Job details </h1><hr>    
+      <div class="text"><h1>Applied Job details </h1><hr>    
 <?php
 
 try{
 //echo "$cmp_id";
+$rollNo=$_SESSION['user_id'];
 $profile='none';
-$stm5 = $conn->query("SELECT * FROM setplacement.job j , setplacement.apply a WHERE a.job_id=j.job_id");
+$stm5 = $conn->query("SELECT * FROM setplacement.job j , setplacement.apply a ,setplacement.student s WHERE s.rollNo=$rollNo AND a.rollNo=s.rollNo AND a.job_id=j.job_id");
             if($stm5->rowcount() > 0){
                
                 while($row = $stm5->fetch()){
@@ -478,7 +479,7 @@ $stm5 = $conn->query("SELECT * FROM setplacement.job j , setplacement.apply a WH
                 }
               
             }else{
-                echo " No job there foe you";
+                echo "you are not apply any job yet ";
             }
         }catch(Exception $err){
             echo $err->getMessage();

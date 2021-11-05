@@ -44,7 +44,10 @@ try{
 
      $_SESSION['email_id']=$row['email_id'];
 
-
+     //this is for admin of the website
+if($row['levels']==0){
+ header('Location:admin/admin_dashboard.php');
+}
 
   if($row['levels']==1){
 
