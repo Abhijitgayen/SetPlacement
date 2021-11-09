@@ -26,6 +26,26 @@ require_once'../connect.php';
             box-sizing: border-box;
             font-family: "Poppins" , sans-serif;
           }
+          .card {
+            /* Add shadows to create the "card" effect */
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            width: 30%;
+            border-radius: 5px;
+            margin-top:10px;
+            float: left;
+            background-color:white;
+            padding: 0 10px ;
+            margin-left:10px;
+            font-weight: 100;
+
+          }
+
+            /* On mouse-over, add a deeper shadow */
+          .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            }
+
           .logo_name b{
             color: var(--background);
           }
@@ -264,8 +284,6 @@ require_once'../connect.php';
 
             display: inline-block;
             color: #11101d;
-            font-size: 25px;
-            font-weight: 500;
             margin:5%;
             width: 90%;
           }
@@ -334,6 +352,12 @@ require_once'../connect.php';
             font-weight: 500;
             margin: 8px
           }
+
+          .test1 {
+            background-color:black;
+            width: 5%;
+            height: 5%;
+          }
           }
     </style>
     <!-- Boxicons CDN Link -->
@@ -347,7 +371,7 @@ require_once'../connect.php';
     </div>
     <ul class="nav-list">
       <li>
-        <a href="pr_dashboard.php">
+        <a href="admin_dashboard.php">
           <i class='bx bx-grid-alt'></i>
           <span class="links_name">Dashboard</span>
         </a>
@@ -389,7 +413,7 @@ require_once'../connect.php';
        <span class="tooltip">List of placement rep</span>
      </li>
      <li>
-       <a href="#">
+       <a href="job_details.php">
          <i class='bx bxs-shopping-bags'></i>
          <span class="links_name">Job details</span>
        </a>
@@ -416,14 +440,69 @@ require_once'../connect.php';
     </ul>
   </div>
   <section class="home-section">
-    <div class="text">Dashboard of ADMIN <hr>
-        
-<?php
+    <div class="text"><h4>Dashboard of ADMIN</h4> <hr>
+    <!-- card section fro the Dashboard -->
+            <div class="card">
+                    <!--  -->
+                   <?php
+                      try{
+                        
+                        $stm101 = $conn->query("SELECT  * FROM setplacement.student ");   
+                        ?>
+                        <tr>
+                          <td><h5>Total Student : <?php echo $stm101->rowcount(); ?></h5></td>
+                        </tr>    
+                        <?php
+                        }catch(Execption $err){
+                          echo $err->getMessage();
 
-?>
+                      }                      
+                      ?>
+                    <!--  -->
+                </div>
+                <div class="card">
+                    <!--  -->
+                   <?php
+                      try{
+                        
+                        $stm101 = $conn->query("SELECT  * FROM setplacement.company ");   
+                        ?>
+                        <tr>
+                          <td><h5>Total Company : <?php echo $stm101->rowcount(); ?></h5></td>
+                        </tr>    
+                        <?php
+                        }catch(Execption $err){
+                          echo $err->getMessage();
+
+                      }                      
+                      ?>
+                    <!--  -->
+                </div>
+                <div class="card">
+                    <!--  -->
+                   <?php
+                      try{
+                        
+                        $stm101 = $conn->query("SELECT  * FROM setplacement.job ");   
+                        ?>
+                        <tr>
+                          <td><h5>Total Job : <?php echo $stm101->rowcount(); ?></h5></td>
+                        </tr>    
+                        <?php
+                        }catch(Execption $err){
+                          echo $err->getMessage();
+
+                      }                      
+                      ?>
+                    <!--  -->
+                </div>
+        
+<div class="test1"></div>
 
 </div>
   </section>
+
+
 
   <script type="text/javascript">
     /*for side bar in dashboard*/

@@ -9,10 +9,56 @@ session_start();
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <meta name="Author" content="Abhijit Gayen" >
      <meta name="description" content="Abhijit Gayen SetPlacement website for placement and zeroencode.web42.io">
+     <meta http-equiv="refresh" content="500;">
      
         <!-- =====BOX ICONS===== -->
         <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
         <link href='https://unpkg.com/boxicons@2.0.8/css/boxicons.min.css' rel='stylesheet'>
+        
+ <!-- Smooth Scroll -->
+    <!-- <script>
+        // Select all links with hashes
+            $('a[href*="#"]')
+            // Remove links that don't actually link to anything
+            .not('[href="#"]')
+            .not('[href="#0"]')
+            .click(function(event) {
+                // On-page links
+                if (
+                location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') 
+                && 
+                location.hostname == this.hostname
+                ) {
+                // Figure out element to scroll to
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                // Does a scroll target exist?
+                if (target.length) {
+                    // Only prevent default if animation is actually gonna happen
+                    event.preventDefault();
+                    $('html, body').animate({
+                    scrollTop: target.offset().top
+                    }, 1000, function() {
+                    // Callback after animation
+                    // Must change focus!
+                    var $target = $(target);
+                    $target.focus();
+                    if ($target.is(":focus")) { // Checking if the target was focused
+                        return false;
+                    } else {
+                        $target.attr('tabindex','-1'); // Adding tabindex for elements not focusable
+                        $target.focus(); // Set focus again
+                    };
+                    });
+                }
+                }
+            });
+
+        </script> -->
+
+    
+
+
         <style type="text/css">
             :root{
                 --background:#45b6f7;
@@ -68,11 +114,83 @@ session_start();
                 text-align: center;
                 height: 3px;
             }
+            /*secton data*/
+            .home_all{
+                     background-image: linear-gradient(white,var(--background));
+                /*background-color:var(--background) ;*/
+                z-index: 1;
+                /*height: 100vh;*/
+
+            }
+
+            /* cars css */
+            .card {
+            /* Add shadows to create the "card" effect */
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            width: 30%;
+            border-radius:5px;
+            margin-top:10px;
+            float: left;
+            /*background-color:white;*/
+            padding: 15px ;
+            margin-left:10px;
+
+            }
+            .card h3{
+                /*background-color: red; */
+                text-align: center;
+                text-shadow: 1px 1px white;
+                font-style: cursive;
+
+            }
+            .card button{
+                padding: 5px;
+                position: relative;
+                left: 80%;
+            }
+            .card p{
+                padding:5px 0px;
+            }
+
+            /* On mouse-over, add a deeper shadow */
+            .card:hover {
+            box-shadow: 0 8px 100px rgba(0,0,0,0.2);
+            }
+
+            /* Add some padding inside the card container */
+            .container {
+            padding: 5px 16px;
+            min-width: 236px;
+
+            }
+            .section2{
+                display: flex;
+                padding-bottom:30px;
+                flex-wrap: wrap;
+
+            }
+            .section1{
+                width: 100%;
+                height:300px;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-image: url("https://images.pexels.com/photos/1485894/pexels-photo-1485894.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500");
+                position: relative;        
+        
+            }
+
+
+
+
             /*footer data start*/
             .footer{
                 z-index:10;
                 background-color: var(--footer);
                 width: 100%;
+                position: relative;
+                
             }
             .footer .footer__social{
                 font-size: 1.5rem;
@@ -111,17 +229,17 @@ session_start();
             @media screen and (max-width: 860px){
                 .show{
                     background-color:var(--header);
-                    padding: 85px 0px 20px 0px;
+                    padding: 285px 0px 20px 0px;
                     flex-direction: column;
-                    height: 40vh;
+                    height: 50vh;
                     justify-content: space-around;
                     transition: 5ms;
-                    position: relative;
-                    right: 0%;
+                    position:relative;
                 }
                 .nav_head{
-                    position: absolute;
-                    right:0%;top:-40%;
+                    position: fixed;
+                    right:0%;
+                    top:-40%;
                 }
                 .nav_head div {
                     font-variant: small-caps;
@@ -150,33 +268,34 @@ session_start();
                     justify-content: space-around;
                     height: 456px;
                     text-align: center;
+                }
+                .section2{
+                    flex-direction: column;
+                    /*background-color: red;*/
+                    width: 100%;
+                    justify-content: space-around;
 
                 }
+                .card {
+                    width: 80%;
+                    /*background-color: green;*/
+                    margin: auto;
+                    margin-top:45px; 
+                }
+
             }
-            .home_all{
-                     background-image: linear-gradient(white,var(--background));
-                /*background-color:var(--background) ;*/
-                z-index: 1;
-                height: 100vh;
-            }
-
-
-
+            
         </style>
      <title>SetPlacement</title>
 </head>
 <body>
      <section class="header">
-          <div class="head_icon"><b>S</b>et<b>P</b>lacement<b>.</b></div>
+          <div class="head_icon" style="font-size: 1.8rem;"><b>S</b>et<b>P</b>lacement<b>.</b></div>
           <div class="nav_head" id="nav_head" >
-               <div class="jobs"><a href="#">Jobs</a> </div>
-               <div class="candidates"><a href="#">Candidates</a> </div>
-               <div class="company"><a href="#">Company</a> </div>
-               <div class="about_us"><a href="#">About Us</a></div>
-
-
-
-
+               <div class="jobs"><a href="#section1">Jobs</a> </div>
+               <div class="candidates"><a href="#section2">Candidates</a> </div>
+               <div class="company"><a href="#section3">Company</a> </div>
+               <div class="about_us"><a href="#section4">About Us</a></div>
 
                <?php
                if(isset($_SESSION['user_name'] )|| isset($_SESSION['email_id'])){
@@ -196,22 +315,75 @@ session_start();
         </div>
      </section>
      <div class="home_all">
-          <div class="home_title">IITG Placement Protal
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-<?php
-print_r($_SESSION);
-?>
+         <br>
+         <br>
+         <br>
+          <!-- <div class="home_title"><h1>IITG Placement Protal</h1> -->
+<!-- Backwall pager begains from here -->
+
+    <div class="section1" >
+                <div>
+                    <br>
+                    <br>
+                   <!--<h1 style="position:absolute;">This is inside the backgeound</h1>-->
+                </div>
+    </div>
+    
+<!-- Cards  -->
+        <div class="section2" >
+        <div class="card">
+            <h3>Academic Facilities</h3>
+            <div class="container">
+                <p>Our Alumni have emerged successful and excelled in varied professions across the globe. This network is highly enriching for the growth of our community</p>
+                <button>Read More</button>
+            </div>
+
+        </div>
+        <div class="card">
+            <h3>Academic Facilities</h3>
+            <div class="container">
+                <p>All the students enrolled at Set Placement are selected after the rigorous screening process. It ensures that we nurture India’s few most brilliant minds.
+                </p>
+                <button>Read More</button>
+            </div>
+
+        </div>
+        <div class="card">
+            <h3>Academic Facilities</h3>
+            <div class="container">
+                <p>Recognized as India’s No. 1 University, we strive for excellence. Our rankings are reflective of our steep progress</p>
+                <button>Read More</button>
+            </div>
+
+        </div>
+        <div class="card">
+            <h3>Academic Facilities</h3>
+            <div class="container">
+                <p> One’s skills, aptitude and perception reflect the personality of an individual. We offer numerous opportunities for multi dimensional growth of an individual</p>
+                <button>Read More</button>
+            </div>
+
+        </div>
+        <div class="card">
+            <h3>Academic Facilities</h3>
+            <div class="container">
+                <p>Companies can proceed with their tests/screening process after finalizing the schedule in coordinance with Placement Office</p>
+                <button>Read More</button>
+            </div>
+
+        </div>
+        <div class="card">
+            <h3>Academic Facilities</h3>
+            <div class="container">
+                <p>Placement Office allots dates to organizations for campus interviews based on various details given by companies.</p>
+                <button>Read More</button>
+            </div>
+
+        </div>
+            </div>
+        <!-- Cards End here -->
+
+
           </div>
      </div>
 
@@ -264,7 +436,7 @@ print_r($_SESSION);
                 </div>
             </div>
 
-            <p class="footer__copy">&#169; 2021 <a href="https://agayen.github.io/" >Abhijit Gayen
+            <p class="footer__copy">&#169; 2021 <a href="https://agayen.github.io/" >SetPlacement
             </a> . All right reserved</p>
 
      </section>

@@ -285,9 +285,7 @@ try{
   $pdf_temp_loc=$_FILES['resume']['tmp_name'];
   $pdf_store="cv_data/".$_POST['rollno']."_".$cv_no.".pdf";
   move_uploaded_file($pdf_temp_loc, $pdf_store);
-
   try{
-
   $sql="INSERT INTO setplacement.cv(rollNo,cv_no,cv_data) VALUES(:rollNo,:cv_no,:cv_data)";
   $stmt=$conn->prepare($sql);
   echo "string";
@@ -296,11 +294,9 @@ try{
       ':cv_no' => $cv_no,
       ':cv_data'=> $pdf_store
   ));
-
   }catch(Exception $err){
     echo $err->getMessage();
   }
-
 
 
   echo "done";
@@ -310,7 +306,7 @@ try{
         echo $err->getMessage();
     } 
   }
-    ?>
+  ?>
 <!-- AdminLTE App -->
 <script src="js/adminlte.min.js"></script>
 </body>

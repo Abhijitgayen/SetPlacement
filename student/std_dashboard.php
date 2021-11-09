@@ -526,7 +526,7 @@ $stm5 = $conn->query("SELECT * FROM setplacement.student s WHERE s.email=\"$emai
       echo "<div> You are not able to upload Cv <br> because your account is Verified .</div>";
   }
 ?>
-<div class="upload_cv"  <?php  if($cv_no >= 3 && isset($approve_t) && $approve_t==='Y') echo "hidden";?> >
+<div class="upload_cv"  <?php  if( ($cv_no >= 3) || (isset($approve_t) && $approve_t==='Y' )) echo "hidden";?> >
 <div class="text"> Upload Cv<hr></div>
  <form  class="cv_upload"  method="post" id="cv_uplaad" action="cv_upload.php" enctype="multipart/form-data">
   <div class="form-group">
