@@ -125,6 +125,7 @@ session_start();
 
             /* cars css */
             .card {
+            min-width: 306px;
             /* Add shadows to create the "card" effect */
             box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
             transition: 0.3s;
@@ -161,13 +162,14 @@ session_start();
             /* Add some padding inside the card container */
             .container {
             padding: 5px 16px;
-            min-width: 236px;
+           
 
             }
             .section2{
                 display: flex;
                 padding-bottom:30px;
                 flex-wrap: wrap;
+                justify-content: space-around;
 
             }
             .section1{

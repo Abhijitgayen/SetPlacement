@@ -2,7 +2,6 @@
 session_start();
 require_once'../connect.php';
 ?>
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -246,7 +245,6 @@ require_once'../connect.php';
             background: none;
           }
           .home-section{
-            width: 100%;
             position: relative;
             background-image: linear-gradient(25deg, white,whitesmoke,var(--background));
             min-height: 100vh;
@@ -261,13 +259,11 @@ require_once'../connect.php';
             width: calc(100% - 78px);
           }
           .home-section .text{
-
             display: inline-block;
             color: #11101d;
-            font-size: 15px;
+            font-size: 25px;
             font-weight: 500;
-            margin:5%;
-            width: 90%;
+            margin: 18px;
           }
           .profile_icon{
             width: 200px;
@@ -282,9 +278,8 @@ require_once'../connect.php';
               box-shadow: 2px 35px 45px red;
           }
           .full_profile{
-            margin-top: 25px;
-            width: 100%;
             display: flex;
+
             justify-content: space-around;
 
           }
@@ -294,14 +289,41 @@ require_once'../connect.php';
           
           }
           .left_part{
-            width: 40%;
+            width: 30%;
 
           }
           .right_part{
             width: 30%;
 
           }
+          .cv_sort{
+            display: flex;
+            margin-left: 15px;
+            margin-bottom: 25px;  
+          }
+          .cv_sort a, .btn{
+            color: white;
+            border-radius: 25px;
+            box-shadow: 1px 2px 25px black;
+            background-color:var(--background);
+            margin: 5px 5px 5px 10px;
+            text-decoration: none;
+            text-align: center;
+            padding: 5px 10px;
+
+          }
+          .input_btn{
+            background-color: red;
+            width: 200px;
+          }
+          .cv_upload{
+            margin: 2px 1px 19px 25px;
+          }
           @media (max-width: 920px) {
+            .cv_sort{
+              flex-direction: column;
+              margin: 15px;
+            }
             .sidebar li .tooltip{
               display: none;
             }
@@ -330,13 +352,9 @@ require_once'../connect.php';
           .home-section .text{
             display: inline-block;
             color: #11101d;
-            font-size: 5px;
+            font-size: 1.2rem;
             font-weight: 500;
             margin: 8px
-          }
-          #table-section {
-            font-size:2px;
-            font-weight: 100;
           }
           }
     </style>
@@ -344,151 +362,151 @@ require_once'../connect.php';
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
    </head>
 <body>
-  <div class="sidebar">
+   <div class="sidebar">
     <div class="logo-details">
         <div class="logo_name"><b>S</b>et<b>P</b>lacement<b>.</b></div>
         <i class='bx bx-menu' id="btn" ></i>
     </div>
     <ul class="nav-list">
       <li>
-        <a href="admin_dashboard.php">
+        <a href="comp_dashboard.php">
           <i class='bx bx-grid-alt'></i>
           <span class="links_name">Dashboard</span>
         </a>
          <span class="tooltip">Dashboard</span>
       </li>
       <li>
-       <a href="pr_update.php">
+       <a href="comp_update.php">
          <i class='bx bx-user' ></i>
-         <span class="links_name">profile update</span>
+         <span class="links_name">Update profile</span>
        </a>
-       <span class="tooltip">profile upadte</span>
+       <span class="tooltip">Update profile</span>
      </li>
      <li>
-       <a href="#">
+       <a href="comp_massage.php">
          <i class='bx bx-chat' ></i>
          <span class="links_name">Messages</span>
        </a>
        <span class="tooltip">Messages</span>
      </li>
      <li>
-       <a href="student_details.php">
-         <i class='bx bx-pie-chart-alt-2' ></i>
-         <span class="links_name">Student details</span>
+       <a href="comp_job_set.php">
+         <i class='bx bxs-add-to-queue'></i>
+         <span class="links_name"> Create a Job</span>
        </a>
-       <span class="tooltip">Student details</span>
+       <span class="tooltip">Create a Job</span>
      </li>
      <li>
-       <a href="comp_deatils.php">
-         <i class='bx bx-folder' ></i>
-         <span class="links_name">Company details</span>
+       <a href="comp_prev_job.php">
+         <i class='bx bx-list-ul' ></i>
+         <span class="links_name">Previus Job Details</span>
        </a>
-       <span class="tooltip">Comapany Details</span>
+       <span class="tooltip">Previus Job details</span>
      </li>
      <li>
-       <a href="pr_details.php">
-         <i class='bx bx-list-ul'></i>
-         <span class="links_name">List of placement rep</span>
+       <a href="comp_offer.php">
+         <i class='bx bx-list-check' ></i>
+         <span class="links_name">Offer Send</span>
        </a>
-       <span class="tooltip">List of placement rep</span>
-     </li>
-     <li>
-       <a href="job_details.php">
-         <i class='bx bxs-shopping-bags'></i>
-         <span class="links_name">Job details</span>
-       </a>
-       <span class="tooltip">Job details</span>
-     </li>
-     
-     <li>
-       <a href="#">
-         <i class='bx bx-cog' ></i>
-         <span class="links_name">Setting</span>
-       </a>
-       <span class="tooltip">Setting</span>
+       <span class="tooltip">Offer Send</span>
      </li>
      <li class="profile">
          <div class="profile-details">
            <i class='bx bxs-user-pin'></i>
            <div class="name_job">
-             <div class="name"><?php echo $_SESSION['email_id'];?></div>
-             <div class="job">Admin </div>
+             <div class="name"><?php echo $_SESSION['user_name'];?></div>
+             <div class="job">Comapny</div>
            </div>
          </div><a href="../log_out.php">
          <i class='bx bx-log-out' id="log_out" ></i></a>
      </li>
     </ul>
   </div>
+ 
   <section class="home-section">
-    <div class="text">Sudent Details <hr>
-          
-
-    <section id="table-section">
-          <div class="text"><h1>Full details of sudent</h1><hr>
-
-          <table border="1 0.5 ">
-          <tr>
-            <td>Roll NO</td>
-            <td>Email</td>
-            <td>Geneder</td>
-            <td>Mobile No</td>
-            <td>Name</td>
-            <td>Programme</td>
-            <td>Cpi</td>
-            <td>Depertment</td>
-            <td>Delete</td>
-            
-          </tr>
-         
-    <?php
-      try{
-        
-        $stm101 = $conn->query("SELECT * FROM setplacement.student ");
-        if($stm101->rowcount() > 0){
-
-          while($row = $stm101->fetch()){
-        ?>
-        <tr>
-          <td><?php echo $row['rollNo']; ?></td>
-          <td><?php echo $row['email']; ?></td>
-          <td><?php echo $row['gender']; ?></td>
-          <td><?php echo $row['mobileNo']; ?></td>
-          <td><?php echo $row['name']; ?></td>
-          <td><?php echo $row['programme']; ?></td>
-          <td><?php echo $row['cpi']; ?></td>
-          <td><?php echo $row['depertment']; ?></td>
-          <td>
-            <form action='delete.php?id="<?php echo $row['rollNo']; ?>"' method="post">
-              <input type="hidden" name="name" value="<?php echo $row['rollNo']; ?>">
-              <input type="submit" name="submit" value="Delete">
-            </form>
-            </td>
-        </tr>    
-
-        <?php
-
-            
-            echo "</div>";
-
-          }
-        }
-        }catch(Execption $err){
-          echo $err->getMessage();
-
-      }
+      <div class="text">Student  Details<hr> <br>
+      <?php
+     ?></div>
 
 
-      ?>
-      </table>
-        </div>
+<?php
+
+try{
+$rollNo=$_POST['rollNo'] ;
+$job_id=$_POST['job_id'];
+$stm5 = $conn->query("SELECT * FROM setplacement.student s WHERE s.rollNo=$rollNo");
+            if($stm5->rowcount() > 0){
+                echo " <div class='full_profile'>";
+                while($row = $stm5->fetch()){
+                  $name=$row['name'];
+                  echo "<div class='left_part'>";
+                  echo "<div class='from_get'>Name : ".$row['name']."</div>";
+                  echo "<div class='from_get'>Roll No : ".$row['rollNo']."</div>";
+                  echo "<div class='from_get'>CPI : ".$row['cpi']."</div>";
+                  //$_SESSION['rollNo']=$row['rollNo'];
+                  $rollNo=$row['rollNo'];
+                  echo "<div class='from_get'>Email ID : ".$row['email']."</div>";
+                  echo "<div class='from_get'>Gender : ".$row['gender']."</div>";
+                  echo "<div class='from_get'>Mobile No : ".$row['mobileNo']."</div>";
+                  if($row['ppo_details']==0){
+                  echo "<div class='from_get'>PPO : No ppo</div>";
+                  }
+                  else{
+                    echo "<div class='from_get'>PPO : No ppo</div>";
+                    echo "<div class='from_get'>PPO ctc : ".$row['ppo_ctc']."</div>";
+                  }
+                  echo"</div>";
+                  echo "<div class='right_part'> ";
+                  echo "<div class='from_get'>Programme : ".$row['programme']."</div>";
+                  echo "<div class='from_get'>Department : ".$row['depertment']."</div>";
+                  echo "<div class='from_get'>Category : ".$row['category']."</div>";
+                  echo "<div class='from_get address'>Parmenent Address : <br>".$row['parmenentAdress']."</div>";
+                  echo "</div>";
+                  echo "<div>";
+                  echo "<div class='profile_icon'>$name[0]</div>";
   
-</section>
-
+                }
+                echo "</div>";
+            }else{
+                echo "No Entries there";
+            }
+        }catch(Exception $err){
+            echo $err->getMessage();
+        }
+  ?>
 </div>
+    <div class="cv_all">
+      <div class="text"> Cv data <hr></div>
+      <?php
+      //echo $job_id;
+      try {
+        $stmt=$conn->query("SELECT distinct * FROM setplacement.cv c ,setplacement.apply a WHERE c.cv_id=a.cv_id AND a.rollNo=$rollNo AND a.job_id=$job_id ");
+         if($stmt->rowcount() > 0){
+          while($set= $stmt->fetch()){
+            $cv_no=$set['cv_id'];
+            echo $cv_no;
+            ?>
+
+            <div class="cv_sort">
+              <div>
+            <a href="../student/<?php  echo $set['cv_data'];?>" target="_Abhijit"> Resume No <?php echo $set['cv_no'];  ?></a>
+            </div>
+            <?php
+          }
+          echo "  </div>";
+
+         }else{
+          echo "no Cv there ..Upload now ";
+         }
+      } catch (Exception $e) {
+        echo $e->getMessage();
+      }
+      ?>
+</div>
+    
+    
+  </div>
   </section>
-
-
-
 
   <script type="text/javascript">
     /*for side bar in dashboard*/

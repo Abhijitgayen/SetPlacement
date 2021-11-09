@@ -9,7 +9,6 @@ require_once'../connect.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Job details</title>
-    <link rel="stylesheet" href="css/dashboard.css">
     <style type="text/css">
       /* Google Font Link */
           @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
@@ -333,6 +332,7 @@ require_once'../connect.php';
             box-shadow: 2px 3px 15px black;
           }
           table,tr,th{
+            text-align: center;
           	border: 2px solid white;
           	padding: 2px;
           	font-weight: 300;
@@ -553,6 +553,7 @@ $stm5 = $conn->query("SELECT * FROM setplacement.job s WHERE s.job_id=\"$job_id\
    				  echo "</table></div>";               
                   echo "</div>";
 ?>
+<h3>list of student who apply for this profiles</h3>
 <table border="1 0.5 ">
           <tr>
             <td>Roll NO</td>
@@ -563,14 +564,13 @@ $stm5 = $conn->query("SELECT * FROM setplacement.job s WHERE s.job_id=\"$job_id\
             <td>Programme</td>
             <td>Cpi</td>
             <td>Depertment</td>
-            <td>Delete</td>
-            
+            <td></td>
           </tr>
          
     <?php
       try{
         
-        $stm101 = $conn->query("SELECT * FROM setplacement.student");
+        $stm101 = $conn->query("SELECT * FROM setplacement.student s ,setplacement.apply a WHERE a.rollNo=s.rollNo AND a.job_id=$job_id");
         if($stm101->rowcount() > 0){
 
           while($row = $stm101->fetch()){
@@ -585,11 +585,14 @@ $stm5 = $conn->query("SELECT * FROM setplacement.job s WHERE s.job_id=\"$job_id\
           <td><?php echo $row['cpi']; ?></td>
           <td><?php echo $row['depertment']; ?></td>
           <td>
-            <form action='delete.php?id="<?php echo $row['rollNo']; ?>"' method="post">
-              <input type="hidden" name="name" value="<?php echo $row['rollNo']; ?>">
-              <input type="submit" name="submit" value="Delete">
+            <?php $rollNo=$row['rollNo'];?>
+            <form method="post" action="comp_std_details.php">
+              <input type="number" name="rollNo" value="<?php echo $rollNo ;?>" hidden>
+              <input type="number" name="job_id" value="<?php echo $job_id ;?>" hidden>
+              <button>More Details</button>
             </form>
-            </td>
+
+          </td>
         </tr>    
 
         <?php
