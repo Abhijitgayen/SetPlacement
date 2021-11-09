@@ -1,114 +1,31 @@
 <?php
 session_start();
-require_once '../connect.php';
+require_once'../connect.php';
 ?>
- <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <style type="text/css">
-    /* Google Font Link */
-	          @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-	  	     :root{
-	            --background:#45b6f7;
-	            --header:#4a555c;
-	            --footer: #131521;
-	            --head_font_color: white;
-	            --foot_font_color: whitesmoke;
-	          }
-	          *{
-	            margin: 0;
-	            padding: 0;
-	            box-sizing: border-box;
-	            font-family: "Poppins" , sans-serif;
-	          }
-	          html{
-	          	background-image: linear-gradient(15deg,white,var(--background));
-	            width: 100%;
-	            background-repeat: no-repeat;
-	          }
-	          .content-header{
-	          	width:50%;
-	          	position: absolute;
-	          	left:25%;
-	          	right: 25%;
-	            padding: 20px;
-	          }
-	          .col-md-6{
-	            padding: 26px;
-	            width: 100%; 
-	          }
-	          .latest-job h4{
-	          	font-size: 1rem;
-	          }
-	          .uper{
-	          	font-size: 1.5rem;
-	          }
-	          .all_from{
-	            display: flex;
-	            flex-direction: column;
-	            justify-content: space-between;
-	            padding: 5px;
-	           background-color: var(--background); 
-	           border-radius: 25px;
-	          }
-	          .form-group{
-	            text-align: left;
-	            margin:2px;
-	            width: 100%;
-	          }
-	          .form-group input, .form-group textarea{
-	            width: 100%;
-	          }
-	          .text-center{
-	            text-align: center;
-	            color: var(--header);
-	          }
-	          .text-center .uper{
-	            font-variant: small-caps;
-	          }
-	          input, textarea, select{
-	            border-radius: 5px;
-	          border: none;
-	          padding: 5px;
-	            outline: none;
-	           font-size: 1rem;
-	           font-weight: 700;
-	          color: black;
-	          /*border-bottom: 1px solid black;*/
-	          background-color: rgba(1,1,1,0.1);
-	          }
-	          input:hover , textarea:hover{
-	            background-color: white;
-	          }
-	    /* ===== MEDIA QUERIES =====*/
-		    @media screen and (max-width: 826px) {
-		          .all_from{
-		            display: flex;
-		            flex-direction: column;
-		          }
-		        .content-header{
-		        padding: 5px;
-		        width: 90%;
-		        left: 5%;
-		        right: 5%;
-		      }
-		    }
-		    @media screen and (max-width: 420px) {
-		      .all_from{
-		        display: flex;
-		        flex-direction: column;
-		      }
-		      .content-header{
-		        padding: 5px;
-		        width: 100%;
-		        left: 0%;
-		        right: 0%;
-		      }
-		    }
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> SetPlacement dashboard </title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <style type="text/css">
       /* Google Font Link */
+          @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+          :root{
+            --background:#45b6f7;
+            --header:#4a555c;
+            --footer: #131521;
+            --head_font_color: white;
+            --foot_font_color: whitesmoke;
+          }
+          *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins" , sans-serif;
+          }
           .logo_name b{
             color: var(--background);
           }
@@ -329,6 +246,7 @@ require_once '../connect.php';
             background: none;
           }
           .home-section{
+            width: 100%;
             position: relative;
             background-image: linear-gradient(25deg, white,whitesmoke,var(--background));
             min-height: 100vh;
@@ -342,13 +260,16 @@ require_once '../connect.php';
             left: 78px;
             width: calc(100% - 78px);
           }
+          .home-section .text h4{
+            font-size: 1.2rem;
+          }
           .home-section .text{
-          	width:80%;
+
             display: inline-block;
             color: #11101d;
-            font-size: 25px;
             font-weight: 500;
-            margin: auto;
+            margin:5%;
+            width: 90%;
           }
           .profile_icon{
             width: 200px;
@@ -363,21 +284,20 @@ require_once '../connect.php';
               box-shadow: 2px 35px 45px red;
           }
           .full_profile{
+           /* font-size: 1rem;*/
+            margin-top: 25px;
+            width: 100%;
             display: flex;
-            background-image: linear-gradient(125deg,var(--background),white,whitesmoke) ;
             justify-content: space-around;
-            margin: 10px;
-            padding: 10px;
-            border-radius: 20px;
 
           }
           .full_profile .from_get{
             padding: 5px 15px;
-            font-size: 21px;
+            font-size: 1rem;
           
           }
           .left_part{
-            width: 30%;
+            width: 40%;
 
           }
           .right_part{
@@ -395,7 +315,7 @@ require_once '../connect.php';
             }
             .full_profile{
               font-size: 16px;
-              width: 95%;
+              width: 100%;
               flex-direction: column;
             }
             .left_part{
@@ -408,9 +328,6 @@ require_once '../connect.php';
               order: 3;
               width: 100%;
             }
-            .home-section .text{
-            	width: 100%;
-            }
           }
            @media (max-width: 400px) {
           .home-section .text{
@@ -422,13 +339,11 @@ require_once '../connect.php';
           }
           }
     </style>
-  <title>Setplacement pr_update_from</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-  
-</head>
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+   </head>
 <body>
-<div class="sidebar">
+  <div class="sidebar">
     <div class="logo-details">
         <div class="logo_name"><b>S</b>et<b>P</b>lacement<b>.</b></div>
         <i class='bx bx-menu' id="btn" ></i>
@@ -495,30 +410,29 @@ require_once '../connect.php';
      </li>
     </ul>
   </div>
-  <!-- Content Wrapper. Contains page content -->
-<section class="home-section">
-  <div class="text"> Company Details <hr> <br></div>
-
- <?php
+  <section class="home-section">
+      <div class="text"><h4>Dashboard of placement rep <?php echo $_SESSION['user_name']; ?><hr></h4>
+        
+<?php
 try{
 $email_set=$_SESSION['email_id'] ;
-$stm5 = $conn->query("SELECT * FROM setplacement.company ");
+$stm5 = $conn->query("SELECT * FROM setplacement.placement_rep s WHERE s.email=\"$email_set\"  ");
             if($stm5->rowcount() > 0){
-                while($row = $stm5->fetch()){
                 echo " <div class='full_profile'>";
-                  $name=$row['cmp_name'];
+                while($row = $stm5->fetch()){
+                  $name=$row['name'];
+                //  print_r($row);
                   echo "<div class='left_part'>";
-                  echo "<div class='from_get'>Name : ".$row['cmp_name']."</div>";
+                  echo "<div class='from_get'>Name : ".$row['name']."</div>";
                   echo "<div class='from_get'>Email ID : ".$row['email']."</div>";
-                  echo "<div class='from_get'>Mobile No : ".$row['contactNo']."</div>";
+                  echo "<div class='from_get'>Mobile No : ".$row['mobileNo']."</div>";
                   echo "</div>";
                   echo "<div class='right_part'> ";
-                  echo "<div class='from_get details'>Comapny details : <br>".$row['details']."</div>";
+                  echo "<div class='from_get details'>department : ".$row['depertment']."</div>";
                   echo "</div>";
                   echo "<div class='profile_icon'>$name[0]</div>";
-                  echo "</div>";
                 }
-            
+                echo "</div>";
             }else{
                 echo "No Entries there";
             }
@@ -527,8 +441,10 @@ $stm5 = $conn->query("SELECT * FROM setplacement.company ");
         }
   ?>
 
-</section>
-</body>
+
+</div>
+  </section>
+
   <script type="text/javascript">
     /*for side bar in dashboard*/
       let sidebar = document.querySelector(".sidebar");
@@ -553,5 +469,8 @@ $stm5 = $conn->query("SELECT * FROM setplacement.company ");
          closeBtn.classList.replace("bx-menu-alt-right","bx-menu");//replacing the iocns class
        }
       }
+
   </script>
+
+</body>
 </html>

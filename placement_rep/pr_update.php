@@ -41,10 +41,10 @@ require_once '../connect.php';
 	            width: 100%; 
 	          }
 	          .latest-job h4{
-	          	font-size: 1rem;
+	          	font-size: 0.9rem;
 	          }
 	          .uper{
-	          	font-size: 1.5rem;
+	          	font-size: 1.2rem;
 	          }
 	          .all_from{
 	            display: flex;
@@ -350,37 +350,6 @@ require_once '../connect.php';
             font-weight: 500;
             margin: auto;
           }
-          .profile_icon{
-            width: 200px;
-            height: 200px;
-            background-color: var(--background);
-            font-size: 149px;
-            padding: 5px;
-            text-align: center;
-            border-radius: 50%;
-            font-weight: bolder;
-            font-family: times;
-              box-shadow: 2px 35px 45px red;
-          }
-          .full_profile{
-            display: flex;
-
-            justify-content: space-around;
-
-          }
-          .full_profile .from_get{
-            padding: 5px 15px;
-            font-size: 21px;
-          
-          }
-          .left_part{
-            width: 30%;
-
-          }
-          .right_part{
-            width: 30%;
-
-          }
           @media (max-width: 920px) {
             .sidebar li .tooltip{
               display: none;
@@ -395,16 +364,7 @@ require_once '../connect.php';
               width: 100%;
               flex-direction: column;
             }
-            .left_part{
-              margin-top:25px; 
-              order: 2;
-              width: 100%;
-            }
-            .right_part{
-              margin-top: 25px;
-              order: 3;
-              width: 100%;
-            }
+             
             .home-section .text{
             	width: 100%;
             }
@@ -425,7 +385,7 @@ require_once '../connect.php';
   
 </head>
 <body>
- <div class="sidebar">
+<div class="sidebar">
     <div class="logo-details">
         <div class="logo_name"><b>S</b>et<b>P</b>lacement<b>.</b></div>
         <i class='bx bx-menu' id="btn" ></i>
@@ -446,7 +406,7 @@ require_once '../connect.php';
        <span class="tooltip">profile upadte</span>
      </li>
      <li>
-       <a href="#">
+       <a href="send_masssge.php">
          <i class='bx bx-chat' ></i>
          <span class="links_name">Messages</span>
        </a>
@@ -474,19 +434,11 @@ require_once '../connect.php';
        <span class="tooltip">List of placement rep</span>
      </li>
      <li>
-       <a href="#">
+       <a href="pr_job_details.php">
          <i class='bx bxs-shopping-bags'></i>
          <span class="links_name">Job details</span>
        </a>
        <span class="tooltip">Job details</span>
-     </li>
-     
-     <li>
-       <a href="#">
-         <i class='bx bx-cog' ></i>
-         <span class="links_name">Setting</span>
-       </a>
-       <span class="tooltip">Setting</span>
      </li>
      <li class="profile">
          <div class="profile-details">
@@ -501,8 +453,8 @@ require_once '../connect.php';
     </ul>
   </div>
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper" style="margin-left: 0px;">
-    <section class="content-header home-section">
+  <div class="content-wrapper home-section " style="margin-left: 0px;">
+    <section class="content-header ">
       <div class="container text">
         <div class="row latest-job margin-top-50 margin-bottom-20 bg-white">
           <h2 class="text-center margin-bottom-20 margin-top-20 uper">Update Your Profile</h2>

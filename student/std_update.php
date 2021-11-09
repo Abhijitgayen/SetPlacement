@@ -418,11 +418,36 @@ require_once'../connect.php';
      </li>
     </ul>
   </div>
+
+<?php
+
+try {
+  $rollNo=$_SESSION['user_id'];
+  $stmt=$conn->query("SELECT * FROM setplacement.maintains_student s WHERE s.rollNo=$rollNo ");
+  if($stmt ->rowcount() > 0){
+  while ($set=$stmt->fetch()) {
+      //  print_r($set);
+  $approve_t=$set['approved'];
+     }
+    }
+  } catch (Exception $e) {
+      echo $e->getMessage();
+}
+?>
+
 <div class="content-wrapper home-section" style="margin-left: 0px;">
 
     <section class="content-header">
       <div class="container">
-        <div class="row latest-job margin-top-50 margin-bottom-20 bg-white">
+        <?php
+          if(isset($approve_t) && $approve_t==='Y'){
+             echo "You are not able to update your profile because your account is Verified .";
+            }
+          ?>
+        <div class="row latest-job margin-top-50 margin-bottom-20 bg-white"  <?php   if(isset($approve_t) && $approve_t==='Y'){
+             echo "hidden";
+            } ?> >
+          
           <h2 class="text-center margin-bottom-20 margin-top-20 uper">update Your Profile</h2>
           <form method="post" id="registerCandidates" action="" enctype="multipart/form-data">
             <div class="all_from">
@@ -559,6 +584,7 @@ if( isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['email']) &
   $ppo_details=$_POST['ppo_details'];
   $ppo_ctc=$_POST['ppo_ctc'];
   $user_id=$_SESSION['user_id'];
+
 try{
   $sql="UPDATE setplacement.student "." SET name= \"$name\", email=\"$email\", gender=\"$gender\", programme=\"$programme\",mobileNo=\"$contactno\", category=\"$catagory\", depertment=\"$dept \",parmenentAdress=\"$address\",ppo_details=\"$ppo_details\", cpi=$cpi ,ppo_ctc=\" $ppo_ctc\" "." WHERE rollno =$user_id";
   //echo $sql;
@@ -573,7 +599,6 @@ try{
     } 
 }
 unset($_POST);
-
 ?>
           
         </div>

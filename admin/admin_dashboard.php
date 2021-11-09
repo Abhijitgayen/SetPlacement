@@ -418,7 +418,9 @@ require_once'../connect.php';
   <section class="home-section">
     <div class="text">Dashboard of ADMIN <hr>
         
+<?php
 
+?>
 
 </div>
   </section>

@@ -343,7 +343,6 @@ require_once '../connect.php';
             width: calc(100% - 78px);
           }
           .home-section .text{
-          	width:80%;
             display: inline-block;
             color: #11101d;
             font-size: 25px;
@@ -373,7 +372,7 @@ require_once '../connect.php';
           }
           .full_profile .from_get{
             padding: 5px 15px;
-            font-size: 21px;
+            font-size: 0.9rem;
           
           }
           .left_part{
@@ -394,7 +393,7 @@ require_once '../connect.php';
               box-shadow: 2px 35px 45px red;
             }
             .full_profile{
-              font-size: 16px;
+              font-size: 0.9rem;
               width: 95%;
               flex-direction: column;
             }
@@ -408,15 +407,12 @@ require_once '../connect.php';
               order: 3;
               width: 100%;
             }
-            .home-section .text{
-            	width: 100%;
-            }
           }
            @media (max-width: 400px) {
           .home-section .text{
             display: inline-block;
             color: #11101d;
-            font-size: 12px;
+            font-size: 1rem;
             font-weight: 500;
             margin: 8px
           }
@@ -449,7 +445,7 @@ require_once '../connect.php';
        <span class="tooltip">profile upadte</span>
      </li>
      <li>
-       <a href="#">
+       <a href="send_masssge.php">
          <i class='bx bx-chat' ></i>
          <span class="links_name">Messages</span>
        </a>
@@ -477,19 +473,11 @@ require_once '../connect.php';
        <span class="tooltip">List of placement rep</span>
      </li>
      <li>
-       <a href="#">
+       <a href="pr_job_details.php">
          <i class='bx bxs-shopping-bags'></i>
          <span class="links_name">Job details</span>
        </a>
        <span class="tooltip">Job details</span>
-     </li>
-     
-     <li>
-       <a href="#">
-         <i class='bx bx-cog' ></i>
-         <span class="links_name">Setting</span>
-       </a>
-       <span class="tooltip">Setting</span>
      </li>
      <li class="profile">
          <div class="profile-details">
@@ -505,7 +493,7 @@ require_once '../connect.php';
   </div>
   <!-- Content Wrapper. Contains page content -->
 <section class="home-section">
-  <div class="text"> Student Details <hr> <br></div>
+  <div class="text"> Student Details <hr></div>
 
  <?php
  try{
@@ -535,7 +523,39 @@ require_once '../connect.php';
                   echo "<div class='from_get'>Category : ".$row['category']."</div>";
                   echo "<div class='from_get address'>Parmenent Address : <br>".$row['parmenentAdress']."</div>";
                   echo "</div>";
+                  echo "<div>";
                   echo "<div class='profile_icon'>$name[0]</div>";
+
+                  try {
+                    $rollNo=$row['rollNo'];
+                    $pr_id=$_SESSION['user_id'];
+                    $stmt=$conn->query("SELECT * FROM setplacement.maintains_student s WHERE s.rollNo=$rollNo AND s.pr_id=$pr_id ");
+                    if($stmt ->rowcount() > 0){
+                      while ($set=$stmt->fetch()) {
+                       $approve_t=$set['approved'];
+                      }
+                    }
+                    
+                  } catch (Exception $e) {
+                    echo $e->getMessage();
+                  }
+                  ?><br>
+                  <form method="post" action="approve.php" <?php if($approve_t==='Y') echo "hidden";?> >
+                    <input type="text" name="massage" placeholder="set a massage for it *" style="width: 195px;" required>
+                    <br>
+                    <select class="select_approve" name="approve_type">
+                      <option value="Y">Yes</option>
+                      <option value="N">No</option>
+                      <option value="P">Pass</option>
+                    </select>
+                    <input type="number" name="rollNo" value="<?php echo $row['rollNo'] ;?>" hidden>
+                    <input type="number" name="pr_id" value="<?php echo $_SESSION['user_id'] ;?>" hidden>
+                    <input type="text" name="approve_t" value="<?php echo $approve_t; unset($approve_t); ?>" hidden>
+                   <button class="btn" name="student_approve" value="1"> Approve </button> 
+                  </form>
+                  
+                </div>
+                  <?php
                    echo "</div>";
                 }
                

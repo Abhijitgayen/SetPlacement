@@ -412,16 +412,28 @@ require_once'../connect.php';
   <section class="home-section">
       <div class="text"><h1>Job for Apply </h1><hr>    
 <?php
-
+   try {
+     $rollNo=$_SESSION['user_id'];
+    $stmt=$conn->query("SELECT * FROM setplacement.maintains_student s WHERE s.rollNo=$rollNo ");
+    if($stmt ->rowcount() > 0){
+      while ($set=$stmt->fetch()) {
+      $approve_t=$set['approved'];
+        }
+      }
+    } catch (Exception $e) {
+    echo $e->getMessage();
+  }
+if(isset($approve_t) && $approve_t==='Y'){
 try{
 //echo "$cmp_id";
 $profile='none';
 $rollNo=$_SESSION['user_id'];
 //echo $rollNo;
-$stm5 = $conn->query("SELECT * FROM setplacement.job j , setplacement.student s WHERE j.cpiCutOff <= s.cpi AND s.rollNo=$rollNo AND NOT EXISTS (SELECT * FROM setplacement.apply a WHERE a.job_id=j.job_id AND a.rollNo=s.rollNo) AND EXISTS (SELECT * FROM setplacement.programme_job jp WHERE jp.programme_name=s.programme OR jp.programme_name=\"All dept\") AND EXISTS (SELECT * FROM setplacement.branch_job bj WHERE bj.branch_name=s.depertment OR bj.branch_name=\"All Programme\")");
+$stm5 = $conn->query("SELECT * FROM setplacement.job j , setplacement.student s WHERE j.cpiCutOff <= s.cpi AND s.rollNo=$rollNo AND NOT EXISTS (SELECT * FROM setplacement.apply a WHERE a.job_id=j.job_id AND a.rollNo=s.rollNo) AND EXISTS (SELECT * FROM setplacement.programme_job jp WHERE (jp.programme_name=s.programme OR jp.programme_name=\"All dept\")) AND EXISTS (SELECT * FROM setplacement.branch_job bj WHERE (bj.branch_name=s.depertment OR bj.branch_name=\"All Programme\"))");
             if($stm5->rowcount() > 0){
                
                 while($row = $stm5->fetch()){
+                 //echo "<pre>";
                   //print_r($row);
                   echo " <div class='full_profile'>";
 
@@ -484,6 +496,11 @@ $stm5 = $conn->query("SELECT * FROM setplacement.job j , setplacement.student s 
         }catch(Exception $err){
             echo $err->getMessage();
         }
+
+  }
+  else{
+    echo " <div style='font-size:2rem; color:red;'>Your Account is not verified yet </div>";
+  }
   ?>
 
 

@@ -124,12 +124,12 @@ CREATE TABLE job(
  CREATE TABLE maintains_apply (
      comments varchar(100),
      job_id int NOT NULL,
-     pr_id int  not null,
+     pr_id int ,
      rollNo int not NULL,	
      approved char(1) DEFAULT 'N',
      CONSTRAINT maintains_apply_pk PRIMARY KEY (job_id,pr_id,rollno),
      CONSTRAINT maintains_apply_fk_1 FOREIGN KEY (job_id) REFERENCES job (job_id) on DELETE CASCADE on UPDATE CASCADE,
-     CONSTRAINT maintains_apply_fk_2 FOREIGN KEY (pr_id) REFERENCES placement_rep(pr_id) on DELETE CASCADE on UPDATE CASCADE,
+     #CONSTRAINT maintains_apply_fk_2 FOREIGN KEY (pr_id) REFERENCES placement_rep(pr_id) on DELETE CASCADE on UPDATE CASCADE,
      CONSTRAINT maintains_apply_fk_3 FOREIGN KEY (rollNo) REFERENCES student(rollNo) on DELETE CASCADE on UPDATE CASCADE
  );
 

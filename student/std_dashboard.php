@@ -298,7 +298,7 @@ require_once'../connect.php';
           }
           .cv_sort{
             display: flex;
-            margin-left: 25px;
+            margin-left: 15px;
             margin-bottom: 25px;  
           }
           .cv_sort a, .btn{
@@ -306,16 +306,24 @@ require_once'../connect.php';
             border-radius: 25px;
             box-shadow: 1px 2px 25px black;
             background-color:var(--background);
-            margin: 5px 5px 5px 15px;
+            margin: 5px 5px 5px 10px;
             text-decoration: none;
             text-align: center;
             padding: 5px 10px;
 
           }
+          .input_btn{
+            background-color: red;
+            width: 200px;
+          }
           .cv_upload{
             margin: 2px 1px 19px 25px;
           }
           @media (max-width: 920px) {
+            .cv_sort{
+              flex-direction: column;
+              margin: 15px;
+            }
             .sidebar li .tooltip{
               display: none;
             }
@@ -344,7 +352,7 @@ require_once'../connect.php';
           .home-section .text{
             display: inline-block;
             color: #11101d;
-            font-size: 12px;
+            font-size: 1.2rem;
             font-weight: 500;
             margin: 8px
           }
@@ -453,7 +461,30 @@ $stm5 = $conn->query("SELECT * FROM setplacement.student s WHERE s.email=\"$emai
                   echo "<div class='from_get'>Category : ".$row['category']."</div>";
                   echo "<div class='from_get address'>Parmenent Address : <br>".$row['parmenentAdress']."</div>";
                   echo "</div>";
+                  echo "<div>";
                   echo "<div class='profile_icon'>$name[0]</div>";
+  try {
+     $rollNo=$_SESSION['user_id'];
+      $stmt=$conn->query("SELECT * FROM setplacement.maintains_student s WHERE s.rollNo=$rollNo ");
+      if($stmt ->rowcount() > 0){
+      while ($set=$stmt->fetch()) {
+      //  print_r($set);
+      $approve_t=$set['approved'];
+        }
+        }
+      } catch (Exception $e) {
+      echo $e->getMessage();
+    }
+     if(isset($approve_t)&& $approve_t==='Y'){
+      //echo $approve_t;
+      echo "<div style='font-size:4rem; color:green; text-align:center;'><i class='bx bxs-user-check'></i></div>";}
+      elseif (isset($approve_t) && $approve_t==='P') {
+        # code...
+         echo "<div style='font-size:4rem; color:green; text-align:center;'><i class='bx bxs-user-x'></i></div>";
+      }
+     else{
+      echo "<div style='font-size:4rem; color:red; text-align:center;'><i class='bx bxs-user-x'></i></div>";
+     }
                 }
                 echo "</div>";
             }else{
@@ -463,6 +494,7 @@ $stm5 = $conn->query("SELECT * FROM setplacement.student s WHERE s.email=\"$emai
             echo $err->getMessage();
         }
   ?>
+</div>
     <div class="cv_all">
       <div class="text"> Cv data <hr></div>
       <?php
@@ -489,14 +521,19 @@ $stm5 = $conn->query("SELECT * FROM setplacement.student s WHERE s.email=\"$emai
       }
       ?>
 </div>
-<div class="upload_cv"  <?php  if($cv_no >= 3) echo "hidden";?> >
+ <?php
+  if(isset($approve_t) && $approve_t==='Y'){
+      echo "<div> You are not able to upload Cv <br> because your account is Verified .</div>";
+  }
+?>
+<div class="upload_cv"  <?php  if($cv_no >= 3 && isset($approve_t) && $approve_t==='Y') echo "hidden";?> >
 <div class="text"> Upload Cv<hr></div>
  <form  class="cv_upload"  method="post" id="cv_uplaad" action="cv_upload.php" enctype="multipart/form-data">
   <div class="form-group">
   </div>  
   <div class="form-group">
   <label style="color: #10161A;">File Format PDF Only!<br></label>
-  <input type="file" name="resume" class="btn btn-raised btn-link" accept="application/pdf" required>
+  <input type="file" name="resume" class="btn btn-raised input_btn" accept="application/pdf" required>
   <input type="number" name="cv_no" value="<?php echo $cv_no; ?>" hidden>
   <button type="Submit" class="btn" name="Submit"> Submit</button>
   </div>   

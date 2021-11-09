@@ -1,114 +1,31 @@
 <?php
 session_start();
-require_once '../connect.php';
+require_once'../connect.php';
 ?>
- <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <style type="text/css">
-    /* Google Font Link */
-	          @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-	  	     :root{
-	            --background:#45b6f7;
-	            --header:#4a555c;
-	            --footer: #131521;
-	            --head_font_color: white;
-	            --foot_font_color: whitesmoke;
-	          }
-	          *{
-	            margin: 0;
-	            padding: 0;
-	            box-sizing: border-box;
-	            font-family: "Poppins" , sans-serif;
-	          }
-	          html{
-	          	background-image: linear-gradient(15deg,white,var(--background));
-	            width: 100%;
-	            background-repeat: no-repeat;
-	          }
-	          .content-header{
-	          	width:50%;
-	          	position: absolute;
-	          	left:25%;
-	          	right: 25%;
-	            padding: 20px;
-	          }
-	          .col-md-6{
-	            padding: 26px;
-	            width: 100%; 
-	          }
-	          .latest-job h4{
-	          	font-size: 1rem;
-	          }
-	          .uper{
-	          	font-size: 1.5rem;
-	          }
-	          .all_from{
-	            display: flex;
-	            flex-direction: column;
-	            justify-content: space-between;
-	            padding: 5px;
-	           background-color: var(--background); 
-	           border-radius: 25px;
-	          }
-	          .form-group{
-	            text-align: left;
-	            margin:2px;
-	            width: 100%;
-	          }
-	          .form-group input, .form-group textarea{
-	            width: 100%;
-	          }
-	          .text-center{
-	            text-align: center;
-	            color: var(--header);
-	          }
-	          .text-center .uper{
-	            font-variant: small-caps;
-	          }
-	          input, textarea, select{
-	            border-radius: 5px;
-	          border: none;
-	          padding: 5px;
-	            outline: none;
-	           font-size: 1rem;
-	           font-weight: 700;
-	          color: black;
-	          /*border-bottom: 1px solid black;*/
-	          background-color: rgba(1,1,1,0.1);
-	          }
-	          input:hover , textarea:hover{
-	            background-color: white;
-	          }
-	    /* ===== MEDIA QUERIES =====*/
-		    @media screen and (max-width: 826px) {
-		          .all_from{
-		            display: flex;
-		            flex-direction: column;
-		          }
-		        .content-header{
-		        padding: 5px;
-		        width: 90%;
-		        left: 5%;
-		        right: 5%;
-		      }
-		    }
-		    @media screen and (max-width: 420px) {
-		      .all_from{
-		        display: flex;
-		        flex-direction: column;
-		      }
-		      .content-header{
-		        padding: 5px;
-		        width: 100%;
-		        left: 0%;
-		        right: 0%;
-		      }
-		    }
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> SetPlacement dashboard </title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <style type="text/css">
       /* Google Font Link */
+          @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+          :root{
+            --background:#45b6f7;
+            --header:#4a555c;
+            --footer: #131521;
+            --head_font_color: white;
+            --foot_font_color: whitesmoke;
+          }
+          *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins" , sans-serif;
+          }
           .logo_name b{
             color: var(--background);
           }
@@ -329,6 +246,7 @@ require_once '../connect.php';
             background: none;
           }
           .home-section{
+            width: 100%;
             position: relative;
             background-image: linear-gradient(25deg, white,whitesmoke,var(--background));
             min-height: 100vh;
@@ -343,12 +261,14 @@ require_once '../connect.php';
             width: calc(100% - 78px);
           }
           .home-section .text{
-          	width:80%;
             display: inline-block;
             color: #11101d;
-            font-size: 25px;
+            margin:5%;
+            width: 97%;
+          }
+          .text h1{
+            font-size: 2rem;
             font-weight: 500;
-            margin: auto;
           }
           .profile_icon{
             width: 200px;
@@ -362,18 +282,21 @@ require_once '../connect.php';
             font-family: times;
               box-shadow: 2px 35px 45px red;
           }
+          .all_details{
+            background-image: linear-gradient(25deg,var(--background),whitesmoke,white);
+          }
           .full_profile{
+            margin-top: 25px;
+            width: 100%;
             display: flex;
-            background-image: linear-gradient(125deg,var(--background),white,whitesmoke) ;
+            padding: 20px;
             justify-content: space-around;
-            margin: 10px;
-            padding: 10px;
-            border-radius: 20px;
+            
 
           }
-          .full_profile .from_get{
+          .all_details .from_get{
             padding: 5px 15px;
-            font-size: 21px;
+            font-size:1rem;
           
           }
           .left_part{
@@ -384,9 +307,47 @@ require_once '../connect.php';
             width: 30%;
 
           }
+          .set_up{
+            display: flex;
+          }
+          .set_up .sort{
+            text-align: center;
+            margin: 8px;
+            padding: 5px 10px;
+            background-color: var(--background);
+            border-radius: 25px; 
+            box-shadow: 2px 3px 12px black;
+            color: white;
+          }
+          .table{
+            margin: 1px 1px;
+            font-size: 1.2rem;
+            padding: 2px 2px 22px 2px;
+
+          }
+          table{
+            margin: auto;
+            color: white;
+            border-collapse: collapse;
+            background-color: var(--background);
+            box-shadow: 2px 3px 15px black;
+          }
+          table,tr,th{
+            border: 2px solid white;
+            padding: 2px;
+            font-weight: 300;
+            font-family: cursive;
+
+          }
           @media (max-width: 920px) {
             .sidebar li .tooltip{
               display: none;
+            }
+            .set_up{
+              width: 50%;
+              flex-wrap: wrap;
+              flex-direction: column;
+              flex-basis: 2;
             }
             .profile_icon{
               order:  1;
@@ -394,8 +355,8 @@ require_once '../connect.php';
               box-shadow: 2px 35px 45px red;
             }
             .full_profile{
-              font-size: 16px;
-              width: 95%;
+              font-size: 1.2rem;
+              /*width: 100%;*/
               flex-direction: column;
             }
             .left_part{
@@ -408,11 +369,12 @@ require_once '../connect.php';
               order: 3;
               width: 100%;
             }
-            .home-section .text{
-            	width: 100%;
-            }
+          }
+          .btn{
+            padding: 3px;
           }
            @media (max-width: 400px) {
+          }
           .home-section .text{
             display: inline-block;
             color: #11101d;
@@ -422,13 +384,11 @@ require_once '../connect.php';
           }
           }
     </style>
-  <title>Setplacement pr_update_from</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-  
-</head>
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+   </head>
 <body>
-<div class="sidebar">
+  <div class="sidebar">
     <div class="logo-details">
         <div class="logo_name"><b>S</b>et<b>P</b>lacement<b>.</b></div>
         <i class='bx bx-menu' id="btn" ></i>
@@ -495,40 +455,154 @@ require_once '../connect.php';
      </li>
     </ul>
   </div>
-  <!-- Content Wrapper. Contains page content -->
-<section class="home-section">
-  <div class="text"> Company Details <hr> <br></div>
+  <section class="home-section">
+      <div class="text"><h2>Job Details<hr></h2>
+    
 
- <?php
+<?php
+
 try{
-$email_set=$_SESSION['email_id'] ;
-$stm5 = $conn->query("SELECT * FROM setplacement.company ");
+$cmp_id=$_SESSION['user_id'] ;
+$job_id=$_POST['job_id'];
+//echo "$cmp_id";
+$profile='none';
+$stm5 = $conn->query("SELECT * FROM setplacement.job s WHERE s.job_id=\"$job_id\"  ");
             if($stm5->rowcount() > 0){
+               
                 while($row = $stm5->fetch()){
-                echo " <div class='full_profile'>";
+                 echo "<div class='all_details'>";
+                  //print_r($row);
+                  echo " <div class='full_profile'>";
+
+                  $rec_id=$row['rec_id'];
+                  $job_id=$row['job_id'];
+                  $pro = array( );
+                  $bra = array( );
+                  //get profile name 
+                  try {
+                    $stmt=$conn->query("SELECT * FROM SetPlacement.recomendation r WHERE r.rec_id= $rec_id  ");
+                    if($stmt->rowcount() > 0){
+                      while ($set=$stmt->fetch()) {
+                        $profile=$set['recom_word'];
+                      }
+                   }                    
+                  } catch (Exception $err) {
+                      echo $err->getMessage();
+                  }
+
                   $name=$row['cmp_name'];
                   echo "<div class='left_part'>";
-                  echo "<div class='from_get'>Name : ".$row['cmp_name']."</div>";
-                  echo "<div class='from_get'>Email ID : ".$row['email']."</div>";
-                  echo "<div class='from_get'>Mobile No : ".$row['contactNo']."</div>";
+                   echo "<div class='from_get'>Profile Name : ".$profile."</div>";
+                  echo "<div class='from_get'>cpi Cut off : ".$row['cpiCutOff']."</div>";
+                  echo "<div class='from_get'>ctc : ".$row['ctc']."</div>";
+                  echo "<div class='from_get'>Joining Date : ".$row['joiningDate']."</div>";
+                  echo "<div class='from_get'>Last Date To Apply : ".$row['lastDate']."</div>";
+                  echo "<div class='from_get'>Type Of Job : ".$row['typeJob']."</div>";
+                 /* echo "<div class='from_get'>branch and programe :" ;
+                  try {
+                    $stmt=$conn->query("SELECT p.programme_name ,b.branch_name FROM setplacement.programme_job p , setplacement.branch_job b WHERE p.job_id=$job_id AND p.job_id=b.job_id  ");
+                    if($stmt->rowcount() > 0){
+                      while ($net=$stmt->fetch()) {
+                        echo $net['programme_name']." ".$net['branch_name']."<br>";
+                        //for($it=0;$it<sizeof())
+                      }
+                   }                    
+                  } catch (Exception $err) {
+                      echo $err->getMessage();
+                  }
+                  echo "</div>";*/
                   echo "</div>";
+					//print_r($_POST);
                   echo "<div class='right_part'> ";
                   echo "<div class='from_get details'>Comapny details : <br>".$row['details']."</div>";
                   echo "</div>";
-                  echo "<div class='profile_icon'>$name[0]</div>";
+                  echo "<div class='profile_icon'>$profile[0]</div>";
+                  echo "</div><br>";
+                  echo "<div class='next_part'>";
+                 
+                  try {
+                    $stmt=$conn->query("SELECT p.programme_name  FROM setplacement.programme_job p WHERE p.job_id=$job_id ");
+                    if($stmt->rowcount() > 0){
+                    	 echo "<div class='from_get set_up'>Programe :<br>" ;
+                      while ($net1=$stmt->fetch()) {
+                       echo "<div class='sort'>".$net1['programme_name']."</div>";
+                      }
+                      echo "</div>";
+                    }                     
+                  } catch (Exception $err) {
+                      echo $err->getMessage();
+                  }
+
+                  try {
+                  	$stmt2=$conn->query("SELECT b.branch_name FROM  setplacement.branch_job b WHERE b.job_id=$job_id ");
+ 					if($stmt2->rowcount() > 0){
+ 						 echo "<div class='from_get set_up'>Branch : <br>" ;
+                      while ($net=$stmt2->fetch()) {
+                        echo "<div class='sort'>".$net['branch_name']."</div>";
+                      } 
+                         echo "</div>";               	
+                  }
+              	}catch (Exception $e) {
+                  	echo $e->getMessage();
+		          }
+
+		        try {
+    				$stmt3=$conn->query("SELECT * FROM setplacement.slot  WHERE job_id=$job_id ");
+   				    echo "<div class='table'><br> <table><tr><th>Slot Type</th> <th>Slot date</th><th>Slot time</th></tr>";
+
+    				if($stmt3->rowcount() > 0){
+      					while ($set3=$stmt3->fetch()) {
+      					echo "<tr><th>".$set3[1]."</th> <th>".$set3[2]."</th><th>".$set3[3]."</th></tr>";
+           			//print_r($set3);
+      			}
+      			}                    
+    			} catch (Exception $err) {
+    				 echo $err->getMessage();
+   				}
+   				  echo "</table></div>";               
                   echo "</div>";
+                  //echo "</div>";
+
                 }
-            
+
+         /* for approved_job tables**/
+  try {
+    $stmt=$conn->query("SELECT * FROM setplacement.maintains_job s WHERE s.job_id=$job_id ");
+    if($stmt ->rowcount() > 0){
+      while ($set=$stmt->fetch()) {
+      $approve_t=$set['approved'];
+      echo $approve_t;
+        }
+      }
+    } catch (Exception $e) {
+    echo $e->getMessage();
+  }       
+              
             }else{
                 echo "No Entries there";
             }
         }catch(Exception $err){
             echo $err->getMessage();
         }
-  ?>
 
-</section>
-</body>
+  ?>
+<form method="post" action="pr_job_approve.php" <?php if($approve_t==='Y') echo "hidden"; ?> >
+  <input type="text" name="massage" placeholder="set a massage for it *" style="width: 195px;" required>
+  <br>
+  <select class="select_approve" name="approve_type">
+  <option value="Y">Yes</option>
+  <option value="N">No</option>
+  <option value="P">Pass</option>
+  </select>
+  <input type="number" name="job_id" value="<?php echo $job_id;?>" hidden>
+  <input type="number" name="pr_id" value="<?php echo $_SESSION['user_id'] ;?>" hidden>
+  <input type="text" name="approve_t" value="<?php echo $approve_t; unset($approve_t); ?>" hidden>
+  <button class="btn" name="job_approve" value="1"> Approve </button> 
+</form>
+</div>
+</div>
+  </section>
+
   <script type="text/javascript">
     /*for side bar in dashboard*/
       let sidebar = document.querySelector(".sidebar");
@@ -554,4 +628,6 @@ $stm5 = $conn->query("SELECT * FROM setplacement.company ");
        }
       }
   </script>
+
+</body>
 </html>

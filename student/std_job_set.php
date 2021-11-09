@@ -23,9 +23,26 @@ try{
       ':apply_time'=> $curr,
       ':cv_id' => $cv_id
   ));
+  //header('Location:std_dashboard.php');
+  }catch(Exception $err){
+        echo $err->getMessage();
+  }
+try{
+  $comm="Ok ..you are able to apply.";
+  $app="Y";
+  $d_pr_id=-1;
+  $sql="INSERT INTO setplacement.maintains_apply ( comments, job_id,pr_id,rollNo,approved) VALUES(:comments, :job_id,:pr_id,:rollNo,:approved)";
+  $stmt=$conn->prepare($sql);
+  echo "string";
+  $stmt->execute(array(
+      ':comments'=> $comm,
+      ':job_id' => $job_id,
+      ':rollNo'=>$roll_no,
+      ':pr_id'=>$d_pr_id,
+      ':approved' => $app
+  ));
   header('Location:std_dashboard.php');
   }catch(Exception $err){
         echo $err->getMessage();
   }
-
-?>
+  ?>

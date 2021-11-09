@@ -347,7 +347,7 @@ require_once'../connect.php';
     </div>
     <ul class="nav-list">
       <li>
-        <a href="#">
+        <a href="comp_dashboard.php">
           <i class='bx bx-grid-alt'></i>
           <span class="links_name">Dashboard</span>
         </a>
@@ -361,7 +361,7 @@ require_once'../connect.php';
        <span class="tooltip">Update profile</span>
      </li>
      <li>
-       <a href="#">
+       <a href="comp_massage.php">
          <i class='bx bx-chat' ></i>
          <span class="links_name">Messages</span>
        </a>
@@ -382,18 +382,11 @@ require_once'../connect.php';
        <span class="tooltip">Previus Job details</span>
      </li>
      <li>
-       <a href="#">
+       <a href="comp_offer.php">
          <i class='bx bx-list-check' ></i>
          <span class="links_name">Offer Send</span>
        </a>
        <span class="tooltip">Offer Send</span>
-     </li>
-     <li>
-       <a href="#">
-         <i class='bx bx-heart' ></i>
-         <span class="links_name">Saved</span>
-       </a>
-       <span class="tooltip">Saved</span>
      </li>
      <li class="profile">
          <div class="profile-details">

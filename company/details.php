@@ -388,14 +388,14 @@ require_once'../connect.php';
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
    </head>
 <body>
-  <div class="sidebar">
+ <div class="sidebar">
     <div class="logo-details">
         <div class="logo_name"><b>S</b>et<b>P</b>lacement<b>.</b></div>
         <i class='bx bx-menu' id="btn" ></i>
     </div>
     <ul class="nav-list">
       <li>
-        <a href="#">
+        <a href="comp_dashboard.php">
           <i class='bx bx-grid-alt'></i>
           <span class="links_name">Dashboard</span>
         </a>
@@ -409,7 +409,7 @@ require_once'../connect.php';
        <span class="tooltip">Update profile</span>
      </li>
      <li>
-       <a href="#">
+       <a href="comp_massage.php">
          <i class='bx bx-chat' ></i>
          <span class="links_name">Messages</span>
        </a>
@@ -424,31 +424,17 @@ require_once'../connect.php';
      </li>
      <li>
        <a href="comp_prev_job.php">
-         <i class='bx bx-folder' ></i>
+         <i class='bx bx-list-ul' ></i>
          <span class="links_name">Previus Job Details</span>
        </a>
        <span class="tooltip">Previus Job details</span>
      </li>
      <li>
-       <a href="#">
-         <i class='bx bx-cart-alt' ></i>
-         <span class="links_name">Order</span>
+       <a href="comp_offer.php">
+         <i class='bx bx-list-check' ></i>
+         <span class="links_name">Offer Send</span>
        </a>
-       <span class="tooltip">Order</span>
-     </li>
-     <li>
-       <a href="#">
-         <i class='bx bx-heart' ></i>
-         <span class="links_name">Saved</span>
-       </a>
-       <span class="tooltip">Saved</span>
-     </li>
-     <li>
-       <a href="#">
-         <i class='bx bx-cog' ></i>
-         <span class="links_name">Setting</span>
-       </a>
-       <span class="tooltip">Setting</span>
+       <span class="tooltip">Offer Send</span>
      </li>
      <li class="profile">
          <div class="profile-details">

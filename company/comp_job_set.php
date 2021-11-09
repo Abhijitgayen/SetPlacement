@@ -365,63 +365,55 @@ require_once'../connect.php';
     </div>
     <ul class="nav-list">
       <li>
-        <a href="#">
+        <a href="comp_dashboard.php">
           <i class='bx bx-grid-alt'></i>
           <span class="links_name">Dashboard</span>
         </a>
          <span class="tooltip">Dashboard</span>
       </li>
       <li>
-       <a href="std_profile.php">
+       <a href="comp_update.php">
          <i class='bx bx-user' ></i>
-         <span class="links_name">Profile</span>
+         <span class="links_name">Update profile</span>
        </a>
-       <span class="tooltip">Profile</span>
+       <span class="tooltip">Update profile</span>
      </li>
      <li>
-       <a href="#">
+       <a href="comp_massage.php">
          <i class='bx bx-chat' ></i>
          <span class="links_name">Messages</span>
        </a>
        <span class="tooltip">Messages</span>
      </li>
      <li>
-       <a href="#">
-         <i class='bx bx-pie-chart-alt-2' ></i>
-         <span class="links_name">Applied Job</span>
+       <a href="comp_job_set.php">
+         <i class='bx bxs-add-to-queue'></i>
+         <span class="links_name"> Create a Job</span>
        </a>
-       <span class="tooltip">Applied Job</span>
+       <span class="tooltip">Create a Job</span>
      </li>
      <li>
-       <a href="#">
-         <i class='bx bxs-shopping-bags'></i>
-         <span class="links_name">Jobs </span>
+       <a href="comp_prev_job.php">
+         <i class='bx bx-list-ul' ></i>
+         <span class="links_name">Previus Job Details</span>
        </a>
-       <span class="tooltip">Jobs For Apply</span>
+       <span class="tooltip">Previus Job details</span>
      </li>
      <li>
-       <a href="#">
-         <i class='bx bx-cart-alt' ></i>
-         <span class="links_name">Offers</span>
+       <a href="comp_offer.php">
+         <i class='bx bx-list-check' ></i>
+         <span class="links_name">Offer Send</span>
        </a>
-       <span class="tooltip">Offer from company</span>
-     </li>
-     <li>
-       <a href="#">
-         <i class='bx bx-cog' ></i>
-         <span class="links_name">Update</span>
-       </a>
-       <span class="tooltip">Update profile</span>
+       <span class="tooltip">Offer Send</span>
      </li>
      <li class="profile">
          <div class="profile-details">
            <i class='bx bxs-user-pin'></i>
            <div class="name_job">
              <div class="name"><?php echo $_SESSION['user_name'];?></div>
-             <div class="job">Student</div>
+             <div class="job">Comapny</div>
            </div>
-         </div>
-         <a href="../log_out.php">
+         </div><a href="../log_out.php">
          <i class='bx bx-log-out' id="log_out" ></i></a>
      </li>
     </ul>

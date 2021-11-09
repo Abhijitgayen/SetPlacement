@@ -426,60 +426,46 @@ require_once'../connect.php';
     </div>
     <ul class="nav-list">
       <li>
-        <a href="#">
+        <a href="comp_dashboard.php">
           <i class='bx bx-grid-alt'></i>
           <span class="links_name">Dashboard</span>
         </a>
          <span class="tooltip">Dashboard</span>
       </li>
       <li>
-       <a href="#">
+       <a href="comp_update.php">
          <i class='bx bx-user' ></i>
-         <span class="links_name">User</span>
+         <span class="links_name">Update profile</span>
        </a>
-       <span class="tooltip">User</span>
+       <span class="tooltip">Update profile</span>
      </li>
      <li>
-       <a href="#">
+       <a href="comp_massage.php">
          <i class='bx bx-chat' ></i>
          <span class="links_name">Messages</span>
        </a>
        <span class="tooltip">Messages</span>
      </li>
      <li>
-       <a href="#">
-         <i class='bx bx-pie-chart-alt-2' ></i>
-         <span class="links_name">Analytics</span>
+       <a href="comp_job_set.php">
+         <i class='bx bxs-add-to-queue'></i>
+         <span class="links_name"> Create a Job</span>
        </a>
-       <span class="tooltip">Analytics</span>
+       <span class="tooltip">Create a Job</span>
      </li>
      <li>
-       <a href="#">
-         <i class='bx bx-folder' ></i>
-         <span class="links_name">File Manager</span>
+       <a href="comp_prev_job.php">
+         <i class='bx bx-list-ul' ></i>
+         <span class="links_name">Previus Job Details</span>
        </a>
-       <span class="tooltip">Files</span>
+       <span class="tooltip">Previus Job details</span>
      </li>
      <li>
-       <a href="#">
-         <i class='bx bx-cart-alt' ></i>
-         <span class="links_name">Order</span>
+       <a href="comp_offer.php">
+         <i class='bx bx-list-check' ></i>
+         <span class="links_name">Offer Send</span>
        </a>
-       <span class="tooltip">Order</span>
-     </li>
-     <li>
-       <a href="#">
-         <i class='bx bx-heart' ></i>
-         <span class="links_name">Saved</span>
-       </a>
-       <span class="tooltip">Saved</span>
-     </li>
-     <li>
-       <a href="#">
-         <i class='bx bx-cog' ></i>
-         <span class="links_name">Setting</span>
-       </a>
-       <span class="tooltip">Setting</span>
+       <span class="tooltip">Offer Send</span>
      </li>
      <li class="profile">
          <div class="profile-details">
@@ -497,7 +483,7 @@ require_once'../connect.php';
     <section class="content-header home-section">
       <div class="container">
         <div class="row latest-job margin-top-50 margin-bottom-20 bg-white">
-          <h2 class="text-center margin-bottom-20 margin-top-20 uper">Create Your Profile</h2>
+          <h2 class="text-center margin-bottom-20 margin-top-20 uper">Update Your Profile</h2>
           <form method="post" id="registerCandidates" action="" enctype="multipart/form-data">
             <div class="all_from">
             <div class="col-md-6 latest-job ">

@@ -174,6 +174,10 @@ session_start();
                <div class="company"><a href="#">Company</a> </div>
                <div class="about_us"><a href="#">About Us</a></div>
 
+
+
+
+
                <?php
                if(isset($_SESSION['user_name'] )|| isset($_SESSION['email_id'])){
                echo'<div class="logt_out"><a href="log_out.php"><i class="bx bx-log-out" id="log_out" ></i> Log Out</a></div>';

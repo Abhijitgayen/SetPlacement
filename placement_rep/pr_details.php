@@ -363,7 +363,7 @@ require_once'../connect.php';
        <span class="tooltip">profile upadte</span>
      </li>
      <li>
-       <a href="#">
+       <a href="send_masssge.php">
          <i class='bx bx-chat' ></i>
          <span class="links_name">Messages</span>
        </a>
@@ -391,19 +391,11 @@ require_once'../connect.php';
        <span class="tooltip">List of placement rep</span>
      </li>
      <li>
-       <a href="#">
+       <a href="pr_job_details.php">
          <i class='bx bxs-shopping-bags'></i>
          <span class="links_name">Job details</span>
        </a>
        <span class="tooltip">Job details</span>
-     </li>
-     
-     <li>
-       <a href="#">
-         <i class='bx bx-cog' ></i>
-         <span class="links_name">Setting</span>
-       </a>
-       <span class="tooltip">Setting</span>
      </li>
      <li class="profile">
          <div class="profile-details">
