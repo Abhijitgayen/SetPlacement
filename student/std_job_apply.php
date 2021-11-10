@@ -429,14 +429,16 @@ try{
 $profile='none';
 $rollNo=$_SESSION['user_id'];
 //echo $rollNo;
-$stm5 = $conn->query("SELECT * FROM setplacement.job j , setplacement.student s WHERE j.cpiCutOff <= s.cpi AND s.rollNo=$rollNo AND NOT EXISTS (SELECT * FROM setplacement.apply a WHERE a.job_id=j.job_id AND a.rollNo=s.rollNo) AND EXISTS (SELECT * FROM setplacement.programme_job jp WHERE (jp.programme_name=s.programme OR jp.programme_name=\"All dept\")) AND EXISTS (SELECT * FROM setplacement.branch_job bj WHERE (bj.branch_name=s.depertment OR bj.branch_name=\"All Programme\"))");
+$stm5 = $conn->query("SELECT * FROM setplacement.job j , setplacement.student s  WHERE j.cpiCutOff <= s.cpi AND s.rollNo=$rollNo AND NOT EXISTS (SELECT * FROM setplacement.apply a WHERE a.job_id=j.job_id AND a.rollNo=s.rollNo) AND EXISTS (SELECT * FROM setplacement.programme_job jp WHERE (jp.programme_name=s.programme OR jp.programme_name=\"All dept\")) AND EXISTS (SELECT * FROM setplacement.branch_job bj WHERE (bj.branch_name=s.depertment OR bj.branch_name=\"All Programme\"))");
+
+// $stm5 = $conn->query("SELECT * FROM setplacement.job j , setplacement.student s ,setplacement.programme_job jp ,setplacement.branch_job bj WHERE j.cpiCutOff <= s.cpi AND s.rollNo=$rollNo AND (jp.programme_name=s.programme) AND (bj.branch_name=s.depertment)  AND NOT EXISTS (SELECT * FROM setplacement.apply a WHERE a.job_id=j.job_id AND a.rollNo=s.rollNo)");
             if($stm5->rowcount() > 0){
                
                 while($row = $stm5->fetch()){
                  //echo "<pre>";
                   //print_r($row);
                   echo " <div class='full_profile'>";
-
+                  $cmp_id=$row['cmp_id'];
                   $rec_id=$row['rec_id'];
                   $job_id=$row['job_id'];
                   //get profile name 
@@ -450,10 +452,24 @@ $stm5 = $conn->query("SELECT * FROM setplacement.job j , setplacement.student s 
                   } catch (Exception $err) {
                       echo $err->getMessage();
                   }
-
-                  $name=$row['cmp_name'];
+                    //get company name
+                    try {
+                      //echo $cmp_id;
+                      $stmt=$conn->query("SELECT * FROM setplacement.company c WHERE c.cmp_id=$cmp_id ");
+                      if($stmt->rowcount() > 0){
+                        while ($set=$stmt->fetch()) {
+  
+                          //print_r($set);
+                          $name=$set['cmp_name'];
+                          //echo $name;
+                        }
+                     }                    
+                    } catch (Exception $err) {
+                        echo $err->getMessage();
+                    }
                   echo "<div class='left_part'>";
                    echo "<div class='from_get'>Profile Name : ".$profile."</div>";
+                   echo "<div class='from_get'>Comapny Name : ".$name."</div>";
                   echo "<div class='from_get'>cpi Cut off : ".$row['cpiCutOff']."</div>";
                   echo "<div class='from_get'>ctc : ".$row['ctc']."</div>";
                   echo "<div class='from_get'>Joining Date : ".$row['joiningDate']."</div>";

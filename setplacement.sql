@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 31, 2021 at 07:31 AM
+-- Generation Time: Nov 10, 2021 at 12:32 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.3.7
 
@@ -31,7 +31,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `apply` (
   `rollNo` int(11) NOT NULL,
   `job_id` int(11) NOT NULL,
-  `apply_time` time DEFAULT NULL,
+  `apply_time` date DEFAULT NULL,
   `cv_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -40,10 +40,17 @@ CREATE TABLE `apply` (
 --
 
 INSERT INTO `apply` (`rollNo`, `job_id`, `apply_time`, `cv_id`) VALUES
-(202123004, 1, '12:00:00', 4),
-(201123004, 2, '11:00:00', 1),
-(202123002, 2, '11:30:00', 3),
-(201123004, 3, '12:00:00', 2);
+(120000002, 2, '2021-11-10', 30),
+(202121001, 2, '2021-11-10', 18),
+(202123002, 2, '2021-11-10', 20),
+(120000002, 3, '2021-11-10', 30),
+(202121001, 3, '2021-11-10', 18),
+(120000002, 4, '2021-11-10', 30),
+(202121001, 4, '2021-11-10', 18),
+(120000002, 5, '2021-11-10', 30),
+(202121001, 5, '2021-11-10', 18),
+(120000002, 6, '2021-11-10', 30),
+(202121001, 6, '2021-11-10', 18);
 
 -- --------------------------------------------------------
 
@@ -54,8 +61,23 @@ INSERT INTO `apply` (`rollNo`, `job_id`, `apply_time`, `cv_id`) VALUES
 CREATE TABLE `branch_job` (
   `id` int(11) NOT NULL,
   `job_id` int(11) NOT NULL,
-  `branch_name` varchar(10) NOT NULL
+  `branch_name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `branch_job`
+--
+
+INSERT INTO `branch_job` (`id`, `job_id`, `branch_name`) VALUES
+(2, 2, 'BTech'),
+(3, 2, 'M.Sc'),
+(4, 3, 'All Programme'),
+(5, 4, 'BDes'),
+(6, 4, 'MDes'),
+(7, 5, 'BDes'),
+(8, 5, 'MDes'),
+(9, 6, 'BTech'),
+(10, 6, 'MTech');
 
 -- --------------------------------------------------------
 
@@ -76,10 +98,8 @@ CREATE TABLE `company` (
 --
 
 INSERT INTO `company` (`cmp_id`, `cmp_name`, `details`, `contactNo`, `email`) VALUES
-(1, 'Mc Kinsey', 'Management Consulting Firm;founded in 1926; advices strategic management to corporations ', 9763197321, 'hr.mckinsey@gmail.com'),
-(2, 'Adobe', 'American Software Company; specializes in digital solutions to optimize applications ', 70261656421, 'hr.adobe@gmail.com'),
-(3, 'Microsoft', 'American Technology Company; specializes in computer software, electronics, PC etc.', 70261656421, 'hr.microsoft@gmail.com'),
-(4, 'vmware_set', 'This is one of the top company in the india. ', 7044136740, 'company@iitg.ac.in');
+(1, 'Adobe', 'This is one of the best company in india. more thing are there .', 5745124512, 'hr.adobe@gmail.com'),
+(2, 'private_comp', 'we will discuss it', 7044136740, 'company_1@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -91,7 +111,7 @@ CREATE TABLE `cv` (
   `cv_id` int(11) NOT NULL,
   `rollNo` int(11) NOT NULL,
   `cv_no` int(11) DEFAULT NULL,
-  `cv_data` blob
+  `cv_data` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -99,11 +119,17 @@ CREATE TABLE `cv` (
 --
 
 INSERT INTO `cv` (`cv_id`, `rollNo`, `cv_no`, `cv_data`) VALUES
-(1, 202123002, 1, NULL),
-(2, 202123002, 2, NULL),
-(3, 202123004, 1, NULL),
-(4, 202123004, 2, NULL),
-(5, 201123004, 1, NULL);
+(10, 202123001, 2, 'cv_data/202123001_2.pdf'),
+(16, 202123001, 3, 'cv_data/202123001_3.pdf'),
+(17, 202123002, 2, 'cv_data/202123002_2.pdf'),
+(18, 202121001, 1, 'cv_data/202121001_1.pdf'),
+(19, 202123055, 1, 'cv_data/202123055_1.pdf'),
+(20, 202123002, 3, 'cv_data/202123002_3.pdf'),
+(26, 20120002, 1, 'cv_data/20120002_1.pdf'),
+(27, 20120002, 2, 'cv_data/20120002_2.pdf'),
+(29, 20120002, 3, 'cv_data/20120002_3.pdf'),
+(30, 120000002, 1, 'cv_data/120000002_1.pdf'),
+(31, 10102412, 1, 'cv_data/10102412_1.pdf');
 
 -- --------------------------------------------------------
 
@@ -114,6 +140,7 @@ INSERT INTO `cv` (`cv_id`, `rollNo`, `cv_no`, `cv_data`) VALUES
 CREATE TABLE `job` (
   `job_id` int(11) NOT NULL,
   `ctc` int(11) NOT NULL,
+  `vacency` int(11) NOT NULL,
   `lastDate` date NOT NULL,
   `joiningDate` date NOT NULL,
   `details` varchar(500) NOT NULL,
@@ -128,12 +155,12 @@ CREATE TABLE `job` (
 -- Dumping data for table `job`
 --
 
-INSERT INTO `job` (`job_id`, `ctc`, `lastDate`, `joiningDate`, `details`, `rec_id`, `typeJob`, `cpiCutOff`, `cmp_id`, `adertiseDate`) VALUES
-(1, 1400000, '2021-08-15', '2021-08-19', 'RESPONSIBILITIES: Mine and analyze data from company database to optimize product development, develop custom models and algorithms to datasets, use predictive modelling to outgrow business. QUALIFICATIONS: B.Tech in CSE/Computing, M.Tech in Data Science, experience with Python, R,SQL, good knowledge of datastructures and algorithms.', 1, 'Full Time', 7, 2, '2021-05-15'),
-(2, 750000, '2021-11-20', '2021-01-09', 'RESPONSIBILITIES: Develop intuitive software that meets and exceeds company needs, update andmaintain code repositories addressing customer concersn, analyze and test programs before launch. QUALIFICATIONS: B.Tech/M.Tech in CSE, hands on experience developingand maintaining software applications, working knowledge of C, C++, Pythin is a must.', 2, 'Full Time', 7.5, 3, '2021-05-19'),
-(3, 4500000, '2021-11-20', '2021-01-09', 'RESPONSIBILITIES:Develop interactive graphical interfaces affecting different business requirements, create userflows, wireframes, prototypes and mockups. QUALIFICATIONS: Bachelors or Masters in Design, working knowledge of Figma, Canva and other tools.', 3, 'Full Time', 8.5, 2, '2021-10-18'),
-(4, 2500000, '2021-11-20', '2021-01-09', 'RESPONSIBILITIES:Develop interactive graphical interfaces affecting different business requirements, create userflows, wireframes, prototypes and mockups. QUALIFICATIONS: Bachelors or Masters in Design, working knowledge of Figma, Canva and other tools.', 3, 'Full Time', 7.5, 2, '2021-10-18'),
-(5, 500000, '2021-11-20', '2021-01-09', 'RESPONSIBILITIES:Develop interactive graphical interfaces affecting different business requirements, create userflows, wireframes, prototypes and mockups. QUALIFICATIONS: Bachelors or Masters in Design, working knowledge of Figma, Canva and other tools.', 3, 'Full Time', 6.5, 3, '2021-10-18');
+INSERT INTO `job` (`job_id`, `ctc`, `vacency`, `lastDate`, `joiningDate`, `details`, `rec_id`, `typeJob`, `cpiCutOff`, `cmp_id`, `adertiseDate`) VALUES
+(2, 2154000, 5, '2021-12-04', '2022-06-19', 'we will discuss on ppt', 13, 'Full Time', 8, 1, '2021-11-04'),
+(3, 1200000, 10, '2021-11-19', '2022-06-04', 'we will discuss this in ppt', 14, 'Full Time', 9, 1, '2021-11-04'),
+(4, 1245400, 5, '2021-11-13', '2022-09-14', 'We will discuss in PPt', 15, 'Full Time', 8.7, 1, '2021-11-05'),
+(5, 1400000, 5, '2021-11-12', '2022-07-08', 'Graphic Designer', 16, 'Full Time', 7.5, 2, '2021-11-09'),
+(6, 4500000, 10, '2021-11-12', '2021-11-11', 'nothing', 17, 'Full Time', 7.8, 1, '2021-11-10');
 
 -- --------------------------------------------------------
 
@@ -152,10 +179,21 @@ CREATE TABLE `log_in` (
 --
 
 INSERT INTO `log_in` (`email_id`, `passwords`, `levels`) VALUES
-('company@iitg.ac.in', '1b3abea96142b31573114bf4e39f2251', 2),
-('placement_r@iitg.ac.in', '1b3abea96142b31573114bf4e39f2251', 3),
-('placement_rep@iitg.ac.in', '1b3abea96142b31573114bf4e39f2251', 3),
-('std@iitg.ac.in', '1b3abea96142b31573114bf4e39f2251', 1);
+('abhijit428@gmail.com', '1b3abea96142b31573114bf4e39f2251', 1),
+('abhijit602@gmail.com', '1b3abea96142b31573114bf4e39f2251', 1),
+('abhijitgayen428@gmail.com', '1b3abea96142b31573114bf4e39f2251', 1),
+('admin1@gmail.com', 'e00cf25ad42683b3df678c61f42c6bda', 0),
+('admin2@gmail.com', 'c84258e9c39059a89ab77d846ddab909', 0),
+('agayen04@gmail.com', '1b3abea96142b31573114bf4e39f2251', 1),
+('agayen04@iitg.ac.in', '1b3abea96142b31573114bf4e39f2251', 1),
+('agayen@iitg.ac.in', '1b3abea96142b31573114bf4e39f2251', 1),
+('company_1@gmail.com', '1b3abea96142b31573114bf4e39f2251', 2),
+('hr.adobe@gmail.com', '1b3abea96142b31573114bf4e39f2251', 2),
+('huub@gmail.com', '1b3abea96142b31573114bf4e39f2251', 1),
+('placement@gmail.com', '1b3abea96142b31573114bf4e39f2251', 3),
+('std1@gmail.com', '1b3abea96142b31573114bf4e39f2251', 1),
+('std2@gmail.com', '1b3abea96142b31573114bf4e39f2251', 1),
+('swati2000@iitg.ac.in', 'e194cedae58a18ef2d109d69e8f72fd5', 1);
 
 -- --------------------------------------------------------
 
@@ -176,15 +214,21 @@ CREATE TABLE `maintains_apply` (
 --
 
 INSERT INTO `maintains_apply` (`comments`, `job_id`, `pr_id`, `rollNo`, `approved`) VALUES
-('You able to apply for Dream Job and super dream job', 1, 1, 202123006, 'Y'),
-('you got good ppo', 1, 2, 202123004, 'N'),
-('You able to apply for Dream Job and super dream job', 1, 3, 201123004, 'Y'),
-('You able to apply for Dream Job and super dream job', 2, 1, 202123002, 'Y'),
-('You able to apply for Dream Job and super dream job', 2, 3, 201123004, 'Y'),
-('you got good ppo', 2, 3, 202123004, 'N'),
-('cpi is low', 2, 3, 202123005, 'N'),
-('cpi is low', 3, 3, 201123004, 'N'),
-('cpi is low', 3, 3, 202123005, 'N');
+('You able to apply for Dream Job and super dream job', 2, -1, 120000002, 'Y'),
+('You able to apply for Dream Job and super dream job', 2, -1, 202121001, 'Y'),
+('You able to apply for Dream Job and super dream job', 2, -1, 202123001, 'Y'),
+('You able to apply for Dream Job and super dream job', 2, -1, 202123002, 'Y'),
+('You able to apply for Dream Job and super dream job', 3, -1, 120000002, 'Y'),
+('You able to apply for Dream Job and super dream job', 3, -1, 202121001, 'Y'),
+('You able to apply for Dream Job and super dream job', 3, -1, 202123001, 'Y'),
+('You able to apply for Dream Job and super dream job', 4, -1, 120000002, 'Y'),
+('You able to apply for Dream Job and super dream job', 4, -1, 202121001, 'Y'),
+('You able to apply for Dream Job and super dream job', 4, -1, 202123001, 'Y'),
+('You able to apply for Dream Job and super dream job', 5, -1, 120000002, 'Y'),
+('You able to apply for Dream Job and super dream job', 5, -1, 202121001, 'Y'),
+('You able to apply for Dream Job and super dream job', 5, -1, 202123001, 'Y'),
+('You able to apply for Dream Job and super dream job', 6, -1, 120000002, 'Y'),
+('You able to apply for Dream Job and super dream job', 6, -1, 202121001, 'Y');
 
 --
 -- Triggers `maintains_apply`
@@ -200,8 +244,8 @@ DELIMITER ;
 DELIMITER $$
 CREATE TRIGGER `apply_tr_2` BEFORE INSERT ON `maintains_apply` FOR EACH ROW begin
 if (select s.ppo_ctc from student  s where s.rollNo= new.rollNo) <=600000 AND (select j.ctc from job j where j.job_id=new.job_id)>600000 AND new.approved='P' then set new.approved='Y' , new.comments='You able to apply for Dream Job and super dream job';
-elseif (select s.ppo_ctc from student  s where s.rollNo= new.rollNo) <=1600000 AND (select j.ctc from job j where j.job_id=new.job_id)>1600000 AND new.approved='P' then set new.approved='Y' , new.comments='You able to apply for Dream  super dream job';
-ELSEIF (new.approved='P' or new.approved = 'Y') THEN set new.approved='N', new.comments='you got good ppo';
+elseif (select s.ppo_ctc from student  s where s.rollNo= new.rollNo) <=1600000 AND (select j.ctc from job j where j.job_id=new.job_id)>1600000 AND new.approved='P' then set new.approved='Y' , new.comments='You able to apply for  super dream job';
+ELSEIF (select s.ppo_ctc from student  s where s.rollNo= new.rollNo) > 1600000 AND (new.approved='P' or new.approved = 'Y') THEN set new.approved='N', new.comments='you got good ppo';
   end if; 
   end
 $$
@@ -210,7 +254,7 @@ DELIMITER $$
 CREATE TRIGGER `apply_tr_3` BEFORE INSERT ON `maintains_apply` FOR EACH ROW begin
 if (select s.ppo_ctc from student  s where s.rollNo= new.rollNo) <=600000 AND (select j.ctc from job j where j.job_id=new.job_id)>600000 AND ( new.approved='P' OR new.approved='Y') then set new.approved='Y' , new.comments='You able to apply for Dream Job and super dream job';
 elseif (select o.offer_ctc from offers o where o.rollNo= new.rollNo) <=1600000 AND (select j.ctc from job j where j.job_id=new.job_id)>1600000 AND ( new.approved='P' OR new.approved='Y') then set new.approved='Y' , new.comments='You able to apply for Dream  super dream job';
-ELSEIF (new.approved='P' or new.approved = 'Y') THEN set new.approved='N', new.comments='you got good offers from company';
+ELSEIF (select o.offer_ctc from offers o where o.rollNo= new.rollNo) > 1600000 AND (new.approved='P' or new.approved = 'Y') THEN set new.approved='N', new.comments='you got good offers from company';
   end if; 
   end
 $$
@@ -234,9 +278,10 @@ CREATE TABLE `maintains_job` (
 --
 
 INSERT INTO `maintains_job` (`comments`, `job_id`, `pr_id`, `approved`) VALUES
-('The company is legitimate and provided all necessary papers.', 1, 2, 'Y'),
-('The company is legitimate and provided all necessary papers.', 2, 1, 'Y'),
-('The company is legitimate and provided all necessary papers.', 3, 3, 'Y');
+('data is ok', 2, 1, 'Y'),
+('ok', 3, 1, 'Y'),
+('ok now', 4, 1, 'Y'),
+('all data is ok', 5, 1, 'Y');
 
 -- --------------------------------------------------------
 
@@ -256,9 +301,12 @@ CREATE TABLE `maintains_student` (
 --
 
 INSERT INTO `maintains_student` (`comments`, `rollNo`, `pr_id`, `approved`) VALUES
-('All documents submitted.', 201123004, 2, 'Y'),
-('data is not ok.', 202123002, 1, 'W'),
-('All documents submitted.', 202123004, 3, 'Y');
+('Ok all', 1245456, 1, 'Y'),
+('ok', 10102412, 1, 'Y'),
+('data is ok', 120000002, 1, 'Y'),
+('all data is ok', 202121001, 1, 'Y'),
+('data is ok', 202123001, 1, 'Y'),
+('All data ok', 202123002, 1, 'Y');
 
 -- --------------------------------------------------------
 
@@ -279,9 +327,9 @@ CREATE TABLE `offers` (
 --
 
 INSERT INTO `offers` (`rollNo`, `job_id`, `offer_ctc`, `aecepted`, `offerlastdate`) VALUES
-(202123004, 1, 150000, 'Y', '2021-12-11'),
-(202123002, 2, 1400000, 'Y', '2021-12-11'),
-(201123004, 3, 12000000, 'Y', '2021-12-10');
+(120000002, 2, 2154000, 'N', '2021-11-11'),
+(120000002, 6, 4500000, 'N', '2021-11-18'),
+(202121001, 6, 4500000, 'N', '2021-11-18');
 
 -- --------------------------------------------------------
 
@@ -291,7 +339,7 @@ INSERT INTO `offers` (`rollNo`, `job_id`, `offer_ctc`, `aecepted`, `offerlastdat
 
 CREATE TABLE `placement_rep` (
   `pr_id` int(11) NOT NULL,
-  `name` varchar(20) DEFAULT NULL,
+  `name` varchar(50) DEFAULT NULL,
   `depertment` varchar(25) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
   `mobileNo` varchar(10) DEFAULT NULL
@@ -302,11 +350,7 @@ CREATE TABLE `placement_rep` (
 --
 
 INSERT INTO `placement_rep` (`pr_id`, `name`, `depertment`, `email`, `mobileNo`) VALUES
-(1, 'Jack Jones', 'Computer Science', 'jj@iitg.ac.in', '9876543210'),
-(2, 'Bony M', 'Mathematics', 'bm@iitg.ac.in', '6879234501'),
-(3, 'John Snow', 'EEE', 'js@iitg.ac.in', '9293819453'),
-(4, 'Abhijit Sen', 'CCD ', 'placement_r@iitg.ac.in', '7044136740'),
-(5, 'placement head', 'CCD', 'placement_rep@iitg.ac.in', '5745124512');
+(1, 'Placement Set', 'CCD', 'placement@gmail.com', '8240190816');
 
 -- --------------------------------------------------------
 
@@ -317,8 +361,22 @@ INSERT INTO `placement_rep` (`pr_id`, `name`, `depertment`, `email`, `mobileNo`)
 CREATE TABLE `programme_job` (
   `id` int(11) NOT NULL,
   `job_id` int(11) NOT NULL,
-  `programme_name` varchar(10) NOT NULL
+  `programme_name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `programme_job`
+--
+
+INSERT INTO `programme_job` (`id`, `job_id`, `programme_name`) VALUES
+(2, 2, 'Civil Engineering'),
+(3, 2, 'Computer Science'),
+(4, 2, 'Mathematics'),
+(5, 3, 'All dept'),
+(6, 4, 'Design'),
+(7, 5, 'Design'),
+(8, 6, 'Civil Engineering'),
+(9, 6, 'Computer Science');
 
 -- --------------------------------------------------------
 
@@ -338,14 +396,11 @@ CREATE TABLE `recomendation` (
 --
 
 INSERT INTO `recomendation` (`rec_id`, `cmp_id`, `recom_word`, `rec_key`) VALUES
-(1, 1, 'Data Scientist', 'Data Analytics'),
-(2, 1, 'Machine Learning Engineer', 'Data Analytics'),
-(3, 2, 'Data Analyst', 'Data Analytics'),
-(4, 2, 'Fullstack Developer', 'Software Development'),
-(5, 2, 'Frontend Developer', 'Software Development'),
-(6, 1, 'Backend Developer', 'Software Development'),
-(7, 1, 'UI/UX Designer', 'Software Design'),
-(8, 1, 'Product Designer', 'Software Design');
+(13, 1, 'SDE3', 'Software Engineer'),
+(14, 1, 'data scientist', 'Data Scientist'),
+(15, 1, 'UX/UI', 'Desine'),
+(16, 2, 'UX/UI', 'UX'),
+(17, 1, 'SDE2', 'Software Engineer');
 
 -- --------------------------------------------------------
 
@@ -355,7 +410,7 @@ INSERT INTO `recomendation` (`rec_id`, `cmp_id`, `recom_word`, `rec_key`) VALUES
 
 CREATE TABLE `slot` (
   `slot_id` int(11) NOT NULL,
-  `slot_no` int(11) DEFAULT NULL,
+  `slot_type` varchar(50) NOT NULL,
   `slot_date` date NOT NULL,
   `slot_time` time NOT NULL,
   `job_id` int(11) NOT NULL
@@ -365,10 +420,23 @@ CREATE TABLE `slot` (
 -- Dumping data for table `slot`
 --
 
-INSERT INTO `slot` (`slot_id`, `slot_no`, `slot_date`, `slot_time`, `job_id`) VALUES
-(1, 1, '2021-10-30', '10:00:00', 1),
-(2, 2, '2021-11-05', '11:30:00', 2),
-(3, 3, '2021-11-06', '11:00:00', 3);
+INSERT INTO `slot` (`slot_id`, `slot_type`, `slot_date`, `slot_time`, `job_id`) VALUES
+(1, 'PPT', '2021-11-04', '22:39:00', 2),
+(2, 'Coding Test', '2021-11-06', '22:40:00', 2),
+(3, 'Online Interview', '2021-11-30', '22:40:00', 2),
+(4, 'PPT', '2021-11-05', '22:40:00', 3),
+(5, 'Technical Test', '2021-11-11', '22:41:00', 3),
+(6, 'On Campus Intervew', '2021-11-27', '22:43:00', 3),
+(7, 'PPT', '2021-11-06', '20:08:00', 4),
+(8, 'Technical Test', '2021-11-12', '20:08:00', 4),
+(9, 'Online Interview', '2021-11-27', '20:10:00', 4),
+(10, 'PPT', '2021-11-11', '20:53:00', 5),
+(11, 'Technical Test', '2021-11-13', '20:54:00', 5),
+(12, 'Online Interview', '2021-11-11', '20:58:00', 5),
+(13, 'PPT', '2021-11-11', '11:16:00', 6),
+(14, 'Technical Test', '2021-11-13', '11:14:00', 6),
+(15, 'Aptitude Test', '2021-11-20', '11:19:00', 6),
+(16, 'PPT', '2021-11-21', '11:17:00', 6);
 
 -- --------------------------------------------------------
 
@@ -382,9 +450,9 @@ CREATE TABLE `student` (
   `gender` char(1) NOT NULL,
   `mobileNo` varchar(10) NOT NULL,
   `name` varchar(25) NOT NULL,
-  `programme` varchar(25) NOT NULL,
+  `programme` varchar(50) NOT NULL,
   `cpi` double NOT NULL,
-  `depertment` varchar(25) NOT NULL,
+  `depertment` varchar(50) NOT NULL,
   `category` varchar(15) DEFAULT NULL,
   `parmenentAdress` varchar(500) NOT NULL,
   `ppo_details` tinyint(1) NOT NULL,
@@ -396,12 +464,14 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`rollNo`, `email`, `gender`, `mobileNo`, `name`, `programme`, `cpi`, `depertment`, `category`, `parmenentAdress`, `ppo_details`, `ppo_ctc`) VALUES
-(201123004, 'rahul@iitg.ac.in', 'M', '8457967778', 'Rahul Sen', 'B.tech', 8.2, 'EEE', 'gen', 'Vill-tajipur,P.O- Rakhi,Pin-843389', 0, 0),
-(202123001, 'std@iitg.ac.in', 'M', '7044136740', 'Rahul rep', 'm.sc', 9.2, 'math ', 'obc', 'Vill - Subhasnagr, P.O- chapla, P.S- raidighi, south 24 pgs.', 1, 0),
-(202123002, 'agayen@iitg.ac.in', 'M', '7044136740', 'Abhijit', 'M.Sc', 8.9, 'math', 'OBC', 'Vill-subhasnagar,P.O- chapla,Pin-743349', 0, 0),
-(202123004, 'ashksen@iitg.ac.in', 'M', '8457961278', 'Akash Sen', 'M.Sc', 8, 'math', 'OBC', 'Vill-Raipur,P.O- kalika,Pin-743389', 1, 1200000),
-(202123005, 'khan@iitg.ac.in', 'M', '8479654212', 'khan dey', 'm.sc', 5.6, 'mathematics', 'obc', 'vill-khani,p.o-khanpur,pin-45778', 1, 500000),
-(202123006, 'rprtro@iitg.ac.in', 'F', '4587961254', 'Rahul Partro', 'M.sc', 7.5, 'Physics', 'sc', 'vill-subhashnagar, P.O - sennagar,pin-458793', 0, 0);
+(1245456, 'std1@gmail.com', 'M', '5745124512', 'student no_1', 'BTech', 5.9, 'Bioscience & Bioengineering', 'General', 'Vill - Subhasnagar, P.O- chapla, P.s-Raidighi', 1, 4577874),
+(10102412, 'agayen04@iitg.ac.in', 'M', '7044136740', 'Abhijit khan', 'BDes', 7.9, 'Design', 'obc', 'nothing', 0, 0),
+(20120002, 'std2@gmail.com', 'M', '7044136740', 'Abhijit SEn', 'BTech', 7.9, 'Bioscience & Bioengineering', 'General', 'ok', 1, 450000),
+(120000002, 'abhijit428@gmail.com', 'M', '7044136740', 'Rahul Gayen', 'MTech', 9.6, 'Computer Science', 'General', 'no', 0, 0),
+(202121001, 'abhijitgayen428@gmail.com', 'M', '7044136740', 'Abhijit set', 'BTech', 10, 'Computer Science ', 'General', '1454', 0, 45787),
+(202123001, 'agayen04@gmail.com', 'M', '7044136740', 'Abhijit Sen', 'BTech', 9.5, 'Computer Science ', 'General', 'ok', 0, 0),
+(202123002, 'agayen@iitg.ac.in', 'M', '7044136740', 'Abhijit Gayen', 'BTech', 9.8, 'Mathematics', 'obc', 'Vill - Subahsh nagr', 0, 0),
+(202123055, 'swati2000@iitg.ac.in', 'F', '584562', 'swati nain', 'M.Sc', 8, 'Mathematics', 'general', 'b-219 subansiri iitg', 1, 25);
 
 --
 -- Indexes for dumped tables
@@ -453,7 +523,6 @@ ALTER TABLE `log_in`
 --
 ALTER TABLE `maintains_apply`
   ADD PRIMARY KEY (`job_id`,`pr_id`,`rollNo`),
-  ADD KEY `maintains_apply_fk_2` (`pr_id`),
   ADD KEY `maintains_apply_fk_3` (`rollNo`);
 
 --
@@ -517,43 +586,49 @@ ALTER TABLE `student`
 -- AUTO_INCREMENT for table `branch_job`
 --
 ALTER TABLE `branch_job`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `company`
 --
 ALTER TABLE `company`
-  MODIFY `cmp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `cmp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `cv`
 --
 ALTER TABLE `cv`
-  MODIFY `cv_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `cv_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `job`
 --
 ALTER TABLE `job`
-  MODIFY `job_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `job_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `placement_rep`
 --
 ALTER TABLE `placement_rep`
-  MODIFY `pr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `pr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `programme_job`
 --
 ALTER TABLE `programme_job`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `recomendation`
 --
 ALTER TABLE `recomendation`
-  MODIFY `rec_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `rec_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `slot`
+--
+ALTER TABLE `slot`
+  MODIFY `slot_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Constraints for dumped tables
@@ -590,7 +665,6 @@ ALTER TABLE `job`
 --
 ALTER TABLE `maintains_apply`
   ADD CONSTRAINT `maintains_apply_fk_1` FOREIGN KEY (`job_id`) REFERENCES `job` (`job_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `maintains_apply_fk_2` FOREIGN KEY (`pr_id`) REFERENCES `placement_rep` (`pr_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `maintains_apply_fk_3` FOREIGN KEY (`rollNo`) REFERENCES `student` (`rollNo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --

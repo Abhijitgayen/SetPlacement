@@ -423,7 +423,7 @@ $stm5 = $conn->query("SELECT * FROM setplacement.job j , setplacement.apply a ,s
                 while($row = $stm5->fetch()){
                   //print_r($row);
                   echo " <div class='full_profile'>";
-
+                  $cmp_id=$row['cmp_id'];
                   $rec_id=$row['rec_id'];
                   $job_id=$row['job_id'];
                   //get profile name 
@@ -437,10 +437,24 @@ $stm5 = $conn->query("SELECT * FROM setplacement.job j , setplacement.apply a ,s
                   } catch (Exception $err) {
                       echo $err->getMessage();
                   }
-
-                  $name=$row['cmp_name'];
+                    //get company name
+                    try {
+                      //echo $cmp_id;
+                      $stmt=$conn->query("SELECT * FROM setplacement.company c WHERE c.cmp_id=$cmp_id ");
+                      if($stmt->rowcount() > 0){
+                        while ($set=$stmt->fetch()) {
+  
+                          //print_r($set);
+                          $name=$set['cmp_name'];
+                          //echo $name;
+                        }
+                     }                    
+                    } catch (Exception $err) {
+                        echo $err->getMessage();
+                    }
                   echo "<div class='left_part'>";
                    echo "<div class='from_get'>Profile Name : ".$profile."</div>";
+                   echo "<div class='from_get'>Comapny Name : ".$name."</div>";
                   echo "<div class='from_get'>cpi Cut off : ".$row['cpiCutOff']."</div>";
                   echo "<div class='from_get'>ctc : ".$row['ctc']."</div>";
                   echo "<div class='from_get'>Joining Date : ".$row['joiningDate']."</div>";

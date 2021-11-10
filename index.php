@@ -192,6 +192,7 @@ session_start();
                 background-color: var(--footer);
                 width: 100%;
                 position: relative;
+                padding-top:25px; 
                 
             }
             .footer .footer__social{
@@ -334,15 +335,15 @@ session_start();
 <!-- Cards  -->
         <div class="section2" >
         <div class="card">
-            <h3>Academic Facilities</h3>
+            <h3>Alumni</h3>
             <div class="container">
-                <p>Our Alumni have emerged successful and excelled in varied professions across the globe. This network is highly enriching for the growth of our community</p>
+                <p>Our Alumni have emerged successful and excelled in varied professions across the globe. This network is highly enriching for the growth of our community...</p>
                 <button>Read More</button>
             </div>
 
         </div>
         <div class="card">
-            <h3>Academic Facilities</h3>
+            <h3>Selection Process</h3>
             <div class="container">
                 <p>All the students enrolled at Set Placement are selected after the rigorous screening process. It ensures that we nurture India’s few most brilliant minds.
                 </p>
@@ -351,7 +352,7 @@ session_start();
 
         </div>
         <div class="card">
-            <h3>Academic Facilities</h3>
+            <h3>Ranking</h3>
             <div class="container">
                 <p>Recognized as India’s No. 1 University, we strive for excellence. Our rankings are reflective of our steep progress</p>
                 <button>Read More</button>
@@ -359,7 +360,7 @@ session_start();
 
         </div>
         <div class="card">
-            <h3>Academic Facilities</h3>
+            <h3>Allround Devolopment</h3>
             <div class="container">
                 <p> One’s skills, aptitude and perception reflect the personality of an individual. We offer numerous opportunities for multi dimensional growth of an individual</p>
                 <button>Read More</button>
@@ -367,7 +368,7 @@ session_start();
 
         </div>
         <div class="card">
-            <h3>Academic Facilities</h3>
+            <h3>Best Screening Process</h3>
             <div class="container">
                 <p>Companies can proceed with their tests/screening process after finalizing the schedule in coordinance with Placement Office</p>
                 <button>Read More</button>
@@ -375,7 +376,7 @@ session_start();
 
         </div>
         <div class="card">
-            <h3>Academic Facilities</h3>
+            <h3>Interviews</h3>
             <div class="container">
                 <p>Placement Office allots dates to organizations for campus interviews based on various details given by companies.</p>
                 <button>Read More</button>

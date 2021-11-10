@@ -434,6 +434,7 @@ require_once'../connect.php';
 try{
 $rollNo=$_POST['rollNo'] ;
 $job_id=$_POST['job_id'];
+$offer_ctc=$_POST['offer_ctc'];
 $stm5 = $conn->query("SELECT * FROM setplacement.student s WHERE s.rollNo=$rollNo");
             if($stm5->rowcount() > 0){
                 echo " <div class='full_profile'>";
@@ -448,13 +449,13 @@ $stm5 = $conn->query("SELECT * FROM setplacement.student s WHERE s.rollNo=$rollN
                   echo "<div class='from_get'>Email ID : ".$row['email']."</div>";
                   echo "<div class='from_get'>Gender : ".$row['gender']."</div>";
                   echo "<div class='from_get'>Mobile No : ".$row['mobileNo']."</div>";
-                  if($row['ppo_details']==0){
+                 /* if($row['ppo_details']==0){
                   echo "<div class='from_get'>PPO : No ppo</div>";
                   }
                   else{
                     echo "<div class='from_get'>PPO : No ppo</div>";
                     echo "<div class='from_get'>PPO ctc : ".$row['ppo_ctc']."</div>";
-                  }
+                  }*/
                   echo"</div>";
                   echo "<div class='right_part'> ";
                   echo "<div class='from_get'>Programme : ".$row['programme']."</div>";
@@ -493,6 +494,32 @@ $stm5 = $conn->query("SELECT * FROM setplacement.student s WHERE s.rollNo=$rollN
             </div>
             <?php
           }
+
+ /*Check about is he get any offer for this profile*/ 
+try {
+    $stmt=$conn->query("SELECT * FROM setplacement.offers o WHERE o.rollNo=$rollNo AND o.job_id=$job_id");
+    if($stmt ->rowcount() > 0){
+      while ($set=$stmt->fetch()) {
+      $approve_t=$set['aecepted'];
+        }
+      }
+    } catch (Exception $e) {
+    echo $e->getMessage();
+  }       
+
+?>
+<form method="post" action="comp_send_offer.php"<?php if(isset($approve_t)) echo "hidden"; ?> >
+  <h4>Send offer to the sudent for thid profile</h4>
+  <input type="number" name="rollNo" value="<?php echo $rollNo;?>" hidden>
+  <input type="number" name="job_id" value="<?php echo $job_id;?>" hidden>
+  <input type="number" name="offer_ctc" value="<?php echo $offer_ctc;?>" hidden>
+  <input type="date" name="offerlastdate" required>
+  <button>Send Offer</button> 
+</form>
+
+
+
+<?php
           echo "  </div>";
 
          }else{
