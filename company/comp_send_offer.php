@@ -24,7 +24,8 @@ try{
       ':offerlastdate'=> $offerlastdate,
       ':aecepted' => $aecepted
   ));
-  header('Location:comp_prev_job.php');
+  echo '<script>location.replace("comp_prev_job.php")</script>';
+
   }catch(Exception $err){
         echo $err->getMessage();
   }

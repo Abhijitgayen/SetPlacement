@@ -26,6 +26,18 @@ require_once'../connect.php';
             box-sizing: border-box;
             font-family: "Poppins" , sans-serif;
           }
+          table{
+           width:100%;
+           background-color: var(--background);
+           padding: 5px;
+           margin: 10px;
+           border-collapse: collapse;
+          }
+         td,th,tr{
+          text-align: center;
+           border: 1px solid white;
+          }
+
           .logo_name b{
             color: var(--background);
           }
@@ -417,10 +429,67 @@ require_once'../connect.php';
     $stmt=$conn->query("SELECT * FROM setplacement.offers s WHERE s.rollNo=$rollNo ");
     if($stmt ->rowcount() > 0){
       while ($set=$stmt->fetch()) {
-        print_r($set);
-      //$approve_t=$set['approved'];
-        //echo $set['comments'];
-        //echo "<div class='Messages profile'>Message for your profile</div><div class='Message'>".$set['comments']."</div>";
+       // print_r($set);
+        $job_id= $set['job_id'];
+        $offerlastdate=$set['offerlastdate'];
+        try{
+        $stmt1=$conn->query("SELECT * FROM setplacement.job s WHERE s.job_id=$job_id");
+          ?>
+          <table>
+            <tr>
+              <th>Profile Name</th>
+              <th>Company</th>
+              <th>ctc</th>
+              <th>type of job</th>
+              <th>Last date to joining</th>
+            </tr>
+<?php
+        if($stmt1->rowcount()>0){
+          while($set1=$stmt1->fetch()){
+            //print_r($set1);
+            $cmp_id=$set1['cmp_id'];
+            $rec_id=$set1['rec_id'];
+            // rec_key to get rec_ deatils
+          try {
+              $stmt=$conn->query("SELECT * FROM SetPlacement.recomendation r WHERE r.rec_id=\"$rec_id\"  ");
+            if($stmt->rowcount() > 0){
+              while ($set2=$stmt->fetch()) {
+                      $profile=$set2['recom_word'];
+                    }
+                  }                    
+              } catch (Exception $err) {
+                  echo $err->getMessage();
+              }
+              //comp details
+            try {
+                  $stmt2=$conn->query("SELECT * FROM setplacement.company c WHERE c.cmp_id=$cmp_id ");
+                  if($stmt2->rowcount() > 0){
+                    while ($set2=$stmt2->fetch()) {
+
+                      $name=$set2['cmp_name'];
+              
+                    }
+                  }                    
+                } catch (Exception $err) {
+                  echo $err->getMessage();
+                }?>
+            <tr>
+                  <td><?php echo $profile ;?></td>
+                  <td><?php echo $name;  ?></td>
+                  <td><?php echo $set1['ctc'];?></td>
+                  <td><?php echo $set1['typeJob']; ?></td>
+                  <td><?php  echo $set['offerlastdate'];?></td>
+              </tr>
+<?php
+
+          }
+          echo "</table></div>";
+        }
+
+        }catch(Exception $err){
+          echo $err->getMessage();
+        }
+
       }
     }
     else{

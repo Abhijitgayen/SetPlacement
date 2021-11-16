@@ -536,7 +536,7 @@ try{
   $stmt->execute();
   echo $stmt->rowCount();
   echo "done";
-  header('Location:comp_dashboard.php');
+  echo '<script>location.replace("comp_dashboard.php")</script>';
   unset($_POST);
       }catch(Exception $err){
         echo $err->getMessage();

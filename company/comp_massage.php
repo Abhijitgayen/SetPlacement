@@ -402,12 +402,6 @@ require_once'../connect.php';
   </div>
   <section class="home-section">
       <div class="text">Dashboard of Comapny <?php echo $_SESSION['user_name']; ?><hr>
-        
-<?php
-
-
-  ?>
-
 
 </div>
   </section>

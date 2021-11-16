@@ -173,20 +173,13 @@ try{
       ':contactNo'=>$_POST['contactno']
   ));
   unset($_POST);
-  header('Location:../log_in.php');
+  echo '<script>location.replace("../log_in.php")</script>';
       }catch(Exception $err){
         echo $err->getMessage();
     } 
 }
 unset($_POST);
 ?>
-	<!-- jQuery Plugins -->
-	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/owl.carousel.min.js"></script>
-	<script type="text/javascript" src="js/jquery.magnific-popup.js"></script>
-	<script type="text/javascript" src="js/main.js"></script>
-<!-- AdminLTE App -->
-<script src="js/adminlte.min.js"></script>
+
 </body>
 </html>

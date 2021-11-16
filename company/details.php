@@ -643,8 +643,6 @@ $stm5 = $conn->query("SELECT * FROM setplacement.job s WHERE s.job_id=\"$job_id\
         }
 
   ?>
-
-
 </div>
   </section>
 

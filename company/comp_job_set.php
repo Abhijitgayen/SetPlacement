@@ -628,7 +628,7 @@ foreach ( $_POST['Branches'] as $ban) {
 $_SESSION['slot']=$_POST['no_slot'];
 $_SESSION['job_id']=$job_id;
 unset($_POST);
-header('Location:slot_job_set.php');
+echo '<script>location.replace("slot_job_set.php")</script>';
 }
 ?>
           

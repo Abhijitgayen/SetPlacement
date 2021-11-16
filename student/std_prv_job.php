@@ -466,19 +466,6 @@ $stm5 = $conn->query("SELECT * FROM setplacement.job j , setplacement.apply a ,s
                 <input type='text' name='hidden' value='hidden' hidden>
         </form>";
                  
-                 /* echo "<div class='from_get'>branch and programe :" ;
-                  try {
-                    $stmt=$conn->query("SELECT p.programme_name ,b.branch_name FROM setplacement.programme_job p , setplacement.branch_job b WHERE p.job_id=$job_id AND p.job_id=b.job_id  ");
-                    if($stmt->rowcount() > 0){
-                      while ($net=$stmt->fetch()) {
-                        echo $net['programme_name']." ".$net['branch_name']."<br>";
-                        //for($it=0;$it<sizeof())
-                      }
-                   }                    
-                  } catch (Exception $err) {
-                      echo $err->getMessage();
-                  }
-                  echo "</div>";*/
                   echo "</div>";
 
 

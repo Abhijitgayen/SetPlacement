@@ -1,11 +1,10 @@
 <?php
 $servername="localhost";
-$port_no=3306;
 $username="root";
-$password="root";
+$password="";
 $myDb="setplacement";
  try{
-      $conn= new PDO("mysql:host=$servername; port=$port_no, dpname=$myDb",$username,$password);
+      $conn= new PDO("mysql:host=$servername; dpname=$myDb",$username,$password);
       //PDO error mode to exception
       $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
       //echo "connection ok ";

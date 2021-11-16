@@ -523,7 +523,7 @@ try {
           echo "  </div>";
 
          }else{
-          echo "no Cv there ..Upload now ";
+          echo "no Cv there.......";
          }
       } catch (Exception $e) {
         echo $e->getMessage();
